@@ -12,9 +12,10 @@ class CorpusMaker:
     '''
     A class used for turning the filtered LvB MSc theses into a corpus. Generally, this class can also be used to generate a corpus from any set of .txt files that have already gone through standard NLP preprocessing. 
     
+    Outputs are saved as pickle files in automatically generated folder DICT_CORP.
+    
     Args:
         input_folder (str): The folder containing the filtered MSc theses. (Should set to the output of the preprocessing function)
-        last_output_folder (str): The folder to sore the pickled data.
         
     Attributes:
         dictionary: A dictionary generated using Gensim.
@@ -29,9 +30,8 @@ class CorpusMaker:
     '''
     
     
-    def __init__(self, input_folder, last_output_folder):
+    def __init__(self, input_folder):
         self.input_folder = input_folder
-        self.last_output_folder = last_output_folder
         self.dictionary = None
         self.dictionary_token2id = None
         self.corpus = None
@@ -95,14 +95,25 @@ class CorpusMaker:
         self.corpus = [self.dictionary.doc2bow(thesis_tokens) for thesis_tokens in theses_tokens_wo_rare_words]
 
         # Pickle the data and save into output folder
-        with open(os.path.join(self.last_output_folder, 'dictionary.pkl'), 'wb') as file:
+        
+        # Set up folder
+        if not os.path.exists('DICT_CORP'):
+            os.makedirs('DICT_CORP')
+        
+        # Save dictionary
+        with open(os.path.join('DICT_CORP', 'dictionary.pkl'), 'wb') as file:
             pickle.dump(self.dictionary, file)
-        with open(os.path.join(self.last_output_folder, 'dictionary_token2id.pkl'), 'wb') as file:
+        
+        # Save ID mapping
+        with open(os.path.join('DICT_CORP', 'dictionary_token2id.pkl'), 'wb') as file:
             pickle.dump(self.dictionary_token2id, file)
-        with open(os.path.join(self.last_output_folder, 'corpus.pkl'), 'wb') as file:
+        
+        # Save corpus
+        with open(os.path.join('DICT_CORP', 'corpus.pkl'), 'wb') as file:
             pickle.dump(self.corpus, file)
         
-        with open(os.path.join(self.last_output_folder, 'texts.pkl'), 'wb') as file:
+        # Save tokens
+        with open(os.path.join('DICT_CORP', 'texts.pkl'), 'wb') as file:
             pickle.dump(self.texts, file)
 
         print('Corpus succesfully created.')
@@ -144,6 +155,10 @@ class CorpusMaker:
         plt.figure(figsize=(19.2, 14.4))
         plt.imshow(wordcloud)
         plt.axis('off')
-        plt.savefig('MSc_Wordcloud.png', transparent = True, dpi = 300)
+        
+        if not os.path.exists('Plots'):
+            os.makedirs('Plots')
+        
+        plt.savefig(os.path.join('Plots', 'MSc_Wordcloud.png'), transparent = True, dpi = 300)
         plt.show()
         plt.close()
