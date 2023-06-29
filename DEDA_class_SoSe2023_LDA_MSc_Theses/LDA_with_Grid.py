@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import csv
 import numpy as np
+import os
 
 class LDA:
     '''
@@ -21,10 +22,11 @@ class LDA:
     How to use:
         
         MSc_LDA = LDA(corpus, dictionary, texts) <-- initializes the class
+        m = MSc_LDA.simple_fit() <-- fits one model with custom specs
         MSc_LDA.grid_search(n_topics, alphas, betas) <-- conducts grid search
         MSc_LDA.lineplot_scores() <-- plots coherence scores from grid search rounds
         m = MSc_LDA.build_best_model() <-- fits best model
-        MSc_LDA.viz() <-- vizualizes best model
+        MSc_LDA.viz() <-- vizualizes best/simple model
         
     '''
     
@@ -35,6 +37,9 @@ class LDA:
         self.dictionary = dictionary
         self.texts = texts
         
+        # Simple fit model item, set to None at initialization
+        self.simple_model = None
+        
         # Below the grid search items, that will get overwritten per search iteration
         # Set to none because it gets selected by the algorithm
         self.best_params = None
@@ -44,6 +49,7 @@ class LDA:
         
         # Set to none due to reason mentioned
         self.best_model = None
+        
         
     def get_coherence_score(self, n, alpha, beta):
         
@@ -83,6 +89,70 @@ class LDA:
         # This comes in handy when fitting the best model after grid search
         return cm.get_coherence(), m
         
+    def simple_fit(self, n_top, alpha_val, beta_val):
+        '''
+        Fits a "simple" LDA model, without any grid search.
+        
+        Args:
+            n_top: The number of topics 
+            alpha_val: Document-Topic Density
+            beta_val: Topic-Word Density.
+        
+        Returns:
+            Fitted LDA model.
+            
+        '''
+        
+        # Set up LDA model
+        model = gensim.models.LdaModel(corpus = self.corpus,
+                                   id2word = self.dictionary,
+                                   num_topics = n_top,
+                                   random_state = 66,  # Custom random state used in our project
+                                   update_every = 1,
+                                   chunksize = 100,
+                                   passes = 10,
+                                   alpha = alpha_val, 
+                                   per_word_topics = True,
+                                   eta = beta_val) 
+        
+        
+        # Get coherence score
+        coh_model = CoherenceModel(model = model, texts = self.texts, corpus = self.corpus, dictionary = self.dictionary, coherence = 'c_v')
+        coherence = coh_model.get_coherence()
+        
+        # Get perplexity
+        perplexity = model.log_perplexity(self.corpus)
+        
+        print('\n')
+        print(f'Coherence Score is: {coherence}')
+        print(f'Perplexity Score is: {perplexity}')
+        print('\n')
+        print('See the topics:')
+        topics = model.print_topics()
+        for topic in topics:
+            print(topic)
+            
+        # Save as CSV via pandas
+        simple_topics_df = pd.DataFrame(topics, columns = ['Topic N', 'Words'])
+        
+        # We specify saving path and make sure to create it if it does not exist
+        if not os.path.exists('Topics_CSVs'):
+            os.makedirs('Topics_CSVs')
+        
+        simple_topics_df.to_csv(os.path.join('Topics_CSVs', 'Topics_from_simple_model.csv'), index = False)
+        
+        # We specify saving path and make sure to create it if it does not exist
+        if not os.path.exists('LDAModels_Gensim'):
+            os.makedirs('LDAModels_Gensim')
+        
+        
+        model.save(os.path.join('LDAModels_Gensim', 'MSc_LDA_simple.gensim'))
+        
+        # Add as self attribute to be used in viz later
+        self.simple_model = model
+        
+        return model
+    
     def grid_search(self, n_topics, alphas, betas, verbose = False):
         
         '''
@@ -131,7 +201,12 @@ class LDA:
                         print(f'Number of topics: {n}; alpha: {alpha}; beta: {beta}; Achieved coherence score: {coherence_score}')
                         
         scores_df = pd.DataFrame(self.scores)
-        scores_df.to_csv('scores_from_search', index = False)
+        
+        # Same statement as above for saving directory
+        if not os.path.exists('Topics_CSVs'):
+            os.makedirs('Topics_CSVs')
+        
+        scores_df.to_csv(os.path.join('Topics_CSVs', 'scores_from_search'), index = False)
         
         
     def lineplot_scores(self):
@@ -155,7 +230,9 @@ class LDA:
         ax1.set_ylabel('Coherence Score')
         ax1.plot(topics, coherence_scores)
         fig1.tight_layout()
-        plt.savefig('Coherence_Scores.png', dpi = 300, transparent = True)
+        if not os.path.exists('Plots'):
+            os.makedirs('Plots')
+        plt.savefig(os.path.join('Plots', 'Coherence_Scores.png'), dpi = 300, transparent = True)
         plt.show()
         plt.close()
             
@@ -165,7 +242,9 @@ class LDA:
         ax2.plot(topics, perplexity_scores)
             
         fig2.tight_layout()
-        plt.savefig('Perplexity_Scores.png', dpi = 300, transparent = True)        
+        if not os.path.exists('Plots'):
+            os.makedirs('Plots')
+        plt.savefig(os.path.join('Plots', 'Perplexity_Scores.png'), dpi = 300, transparent = True)        
         plt.show()
         plt.close()
         
@@ -192,15 +271,22 @@ class LDA:
             _, model = self.get_coherence_score(n, alpha, beta)
             
             # Save the model to be able to load it via Gensim later
-            model.save('MSc_LDA.gensim')
+            if not os.path.exists('LDAModels_Gensim'):
+                os.makedirs('LDAModels_Gensim')
+                    
+            model.save(os.path.join('LDAModels_Gensim', 'Grid_Best_MSc_LDA.gensim'))
+            
             
             topics = model.print_topics()
             for t in topics:
                 print(t)
                 
             # Further save the topics as a csv
+            if not os.path.exists('Topics_CSVs'):
+                os.makedirs('Topics_CSVs')
+
             
-            with open('topics.csv', 'w', newline = '') as f:
+            with open(os.path.join('Topics_CSVs', 'best_topics.csv'), 'w', newline = '') as f:
                 writer = csv.writer(f)
                 writer.writerow(['Topic N', 'Keywords'])
                 for t in topics:
@@ -212,18 +298,43 @@ class LDA:
             raise Exception('No parameters found for the best model. Make sure you have run the grid search already.')
 
     
-    def viz(self):
+    def viz(self, model_type = 'best'):
         
         '''
         Visualizes the optimal LDA model found by gridsearch using pyLDAvis
         
+        Args:
+            model_type: Specify whether we want the visualization for the model trained through simple_fit method or through the build_best_model (via grid search). Default: best
+        
         Returns:
             The visualizations
         '''
-        if self.best_model:
-            pyLDAvis.enable_notebook()
-            viz = gensimvis.prepare(self.best_model, self.corpus, self.dictionary)
-            return viz
+        if model_type == 'best':
+            model = self.best_model
+            if model is None:
+                raise Exception('No best model found. Run grid_search first.')
+        
+        elif model_type == 'simple':
+            model = self.simple_model
+            if model is None:
+                raise Exception('No simple model found. Run simple_fit() first.')
+        
         else:
-            raise Exception('Could not find best model. Try doing a grid search and building the best model.')
+            raise ValueError('Model type not valid. Please select either "best" or "simple".')
+        
+        # Visualize using pyLDAvis
+        pyLDAvis.enable_notebook()
+        viz = gensimvis.prepare(model, self.corpus, self.dictionary)
+        
+        
+        # Save the visualization as HTML
+        plot_directory = 'Plots'
+        if not os.path.exists(plot_directory):
+            os.makedirs(plot_directory)
+            
+        html_path = os.path.join(plot_directory, f'lda_{model_type}_viz.html')
+        pyLDAvis.save_html(viz, html_path)
+        
+        return viz
+    
                         
