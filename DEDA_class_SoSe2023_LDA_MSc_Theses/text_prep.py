@@ -10,7 +10,7 @@ import pdfplumber
 # Import and set up plotting
 import matplotlib.pyplot as plt
 plt.rcParams['figure.figsize'] = (12, 6.75)
-plt.style.use('seaborn-whitegrid')
+plt.style.use('seaborn-v0_8-whitegrid')
 
 # Importing Natural Language Toolkit
 import nltk
@@ -44,7 +44,7 @@ def get_wordnet_pos(word):
     return tag_dict.get(tag, wordnet.NOUN)
 
 
-def preprocess_text(first_input_folder = None, theses = None, inter_output_folder = None, viz_folder = None, verbose = False):
+def preprocess_text(first_input_folder = None, theses = None, inter_output_folder = None, verbose = False):
     """
     Preprocesses the PDF files by making everything lowercase,
     getting rid of non-alphabetic words, removing stopwords,
@@ -56,9 +56,7 @@ def preprocess_text(first_input_folder = None, theses = None, inter_output_folde
         theses: os.listdir(folder).
                 
         inter_output_folder (str): Intermediate output folder to save the filtered theses.
-        
-        viz_folder (str): Folder to save vizualisations.
-        
+                
         verbose (bool): Returns vizualizations and information about dimensionality reduction. Can be set to False to save computational power, memory and time when working with large corpora of files.
 
     Returns:
@@ -81,6 +79,10 @@ def preprocess_text(first_input_folder = None, theses = None, inter_output_folde
                 
         # Empty container for all tokens after processing steps
         tokens_processed = []
+        
+        # set up viz folder
+        viz_folder = os.path.join(os.getcwd(), 'Plots')
+        os.makedirs(viz_folder, exist_ok = True)
     
     # Empty container for filtered theses
     filtered_theses = []
