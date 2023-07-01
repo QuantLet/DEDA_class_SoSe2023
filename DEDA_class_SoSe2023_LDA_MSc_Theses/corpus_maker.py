@@ -22,6 +22,7 @@ class CorpusMaker:
         dictionary_token2id: A mapping of tokens to IDs.
         corpus: BoW corpus generated from the theses. 
         texts: All tokens (used for coherence later on)
+        dates: Returns dates list for theses
         
     Methods:
         make_corpus: Processes the filtered theses texts, drops rare words overall, creates corpus.
@@ -36,6 +37,7 @@ class CorpusMaker:
         self.dictionary_token2id = None
         self.corpus = None
         self.texts = None
+        self.dates = None
 
     def make_corpus(self):
         '''
@@ -49,7 +51,19 @@ class CorpusMaker:
         print('Creating corpus...')
 
         theses = os.listdir(self.input_folder)
+        
+        #sorts theses according to their date of publishing
+        dates = {}
 
+        for thesis_name in theses:
+            date = thesis_name[-14:-4]
+            dates[thesis_name] = date.split('-')
+
+        sorted_dates = sorted(dates.items(), key=lambda x: x[1])
+        sorted_dates_dict = dict(sorted_dates)
+
+        theses = list(sorted_dates_dict.keys())
+        
         # Load and tokenize filtered documents
 
         # Initialize empty list
@@ -94,6 +108,8 @@ class CorpusMaker:
         # Create corpus
         self.corpus = [self.dictionary.doc2bow(thesis_tokens) for thesis_tokens in theses_tokens_wo_rare_words]
 
+        # Create dates
+        self.dates = list(sorted_dates_dict.values())
         # Pickle the data and save into output folder
         
         # Set up folder
@@ -116,9 +132,13 @@ class CorpusMaker:
         with open(os.path.join('DICT_CORP', 'texts.pkl'), 'wb') as file:
             pickle.dump(self.texts, file)
 
+        # Save dates
+        with open(os.path.join('DICT_CORP', 'dates.pkl'), 'wb') as file:
+            pickle.dump(self.dates, file)
+        
         print('Corpus succesfully created.')
 
-        return self.dictionary, self.dictionary_token2id, self.corpus, self.texts
+        return self.dictionary, self.dictionary_token2id, self.corpus, self.texts, self.dates
 
 
     def show_top_words(self, amount):
