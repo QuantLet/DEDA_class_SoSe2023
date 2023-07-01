@@ -59,6 +59,7 @@ def master_theses_scraper(url, down_dir, headers):
     print('Identifying Master\'s Theses...')
     # Set up a new empty container for links to the master's papers
     master_links = []
+    master_dates = []
     for link in valid_links:
         link_r = requests.get(link['href'])
         link_s = BeautifulSoup(link_r.content, 'html.parser')
@@ -66,10 +67,12 @@ def master_theses_scraper(url, down_dir, headers):
         # After manually inspecting the HTML, it can be seen that <span> objects with class = type contain info on whether the paper is a Master's thesis or other type of work
         # Define the span with class 'type'
         type_span = link_s.find('span', class_='type')
+        date_span = link_s.find('span', class_="date")
 
         # Look if the object includes 'Masterarbeit' as text
         if type_span and type_span.text == 'Masterarbeit':
             master_links.append(link)
+            master_dates.append(date_span.text)
 
     print(f'{len(master_links)} Master\'s Theses identified.')
     print('A sample entry looks as follows:\n', master_links[0])
@@ -81,6 +84,7 @@ def master_theses_scraper(url, down_dir, headers):
 
     # An empty container for the download links
     dl_links = []
+    dl_dates = []
 
     for link in master_links:
         # Strips the entry shown above to retain only the link to the abstract pages
@@ -101,7 +105,8 @@ def master_theses_scraper(url, down_dir, headers):
             dl_link = meta['href']
             # Concatenate with base URL
             dl_links.append(base_url + dl_link)
-
+            dl_dates.append(master_dates[master_links.index(link)])
+            
         else:
             print(f"Due to missing link, dropped entry: {link}")
 
@@ -125,7 +130,7 @@ def master_theses_scraper(url, down_dir, headers):
     for index, link in enumerate(dl_links, start=1):
         # {index} takes the number of the file assigned by enumerate
         # Rest of the code grabs the title from the download URL
-        filename = f"{index}.{link.split('/')[-1].split('?')[0]}"
+        filename = f"{index}.{link.split('/')[-1].split('?')[0]}_{dl_dates[index-1]}.pdf"
         # Specifies download path
         file_path = os.path.join(down_dir, filename)
         # Downloads
