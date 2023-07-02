@@ -337,4 +337,16 @@ class LDA:
         
         return viz
     
-                        
+    def DTM(self, time_slice, model_type = 'best'):
+        '''
+        Calls an LDA sequence model for dynamic topic modelling. The raws inside the corpus need to be ordered chronologically (from old to new)
+        
+        Args:
+            time_slice: a list that contains a number of documents for each period analyzed
+            
+        Returns:
+            The fitted model
+        '''
+        if self.best_params:
+            n, alpha, beta = self.best_params
+            ldaseq = LdaSeqModel(corpus=corpus, id2word=dictionary, time_slice=time_slice, num_topics=n)
