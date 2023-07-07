@@ -56,9 +56,10 @@ def en_detect(folder = None, theses = None):
     '''
     print(f'\nCurrent working directory: {os.getcwd()}')
 
-    # List to store German thesis filenames
+    # List to store English thesis filenames
     english_list = []
-    
+    # List to store non-English thesis filenames (unreadable or German lang)
+    dropped = []
     for thesis in theses:
         
         with pdfplumber.open(os.path.join(folder, thesis), pages=[8, 12, 16, 20, 24]) as pdf:
@@ -83,11 +84,13 @@ def en_detect(folder = None, theses = None):
             
             if not english:
                 pdf.close()
+                dropped.append(thesis)
                 os.remove(os.path.join(folder,thesis))
                 print(f'\n{thesis} removed from directory.')
                     
 
     print(f'\nWe have identified in total {len(english_list)} English language documents. See below the full list:')
-    print(english_list)
+    print(f'\nThe following {len(dropped)} documents were removed:')
+    print(dropped)
     
     return english_list    
