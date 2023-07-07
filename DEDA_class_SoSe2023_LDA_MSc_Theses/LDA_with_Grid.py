@@ -217,6 +217,7 @@ class LDA:
         # Plot configuration 
         plt.style.use('seaborn-v0_8-white')
         plt.rcParams['figure.figsize'] = [12, 6.75]
+        plt.rcParams['font.size'] = 28
 
         # Use list comprehension to extract the variables we need for plotting 
         topics = [n_topic['n_topics'] for n_topic in self.scores]
