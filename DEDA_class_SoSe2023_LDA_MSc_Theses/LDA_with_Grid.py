@@ -215,7 +215,7 @@ class LDA:
         '''
   
         # Plot configuration 
-        plt.style.use('seaborn-v0_8-whitegrid')
+        plt.style.use('seaborn-v0_8-white')
         plt.rcParams['figure.figsize'] = [12, 6.75]
 
         # Use list comprehension to extract the variables we need for plotting 
@@ -248,10 +248,7 @@ class LDA:
         plt.show()
         plt.close()
         
-        
-        # NOTE:
-        # This plotting may not be the best option given that we have many variables.
-        # We could consider other options. 
+         
         
     
     def build_best_model(self):
