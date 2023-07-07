@@ -1,0 +1,11 @@
+Topic N,Words
+0,"0.015*""model"" + 0.010*""data"" + 0.010*""sentiment"" + 0.009*""use"" + 0.009*""network"" + 0.009*""learn"" + 0.009*""time"" + 0.008*""base"" + 0.006*""training"" + 0.006*""layer"""
+1,"0.015*""model"" + 0.009*""copula"" + 0.008*""data"" + 0.007*""double"" + 0.006*""use"" + 0.005*""variable"" + 0.005*""value"" + 0.004*""factor"" + 0.004*""result"" + 0.004*""one"""
+2,"0.023*""return"" + 0.015*""private"" + 0.014*""market"" + 0.014*""equity"" + 0.012*""risk"" + 0.010*""factor"" + 0.009*""company"" + 0.008*""test"" + 0.008*""beta"" + 0.008*""public"""
+3,"0.033*""frm"" + 0.016*""risk"" + 0.012*""financial"" + 0.011*""model"" + 0.011*""candidate"" + 0.009*""market"" + 0.009*""systemic"" + 0.009*""institution"" + 0.008*""measure"" + 0.008*""america"""
+4,"0.013*""model"" + 0.009*""estimate"" + 0.009*""distribution"" + 0.008*""copula"" + 0.007*""time"" + 0.007*""value"" + 0.007*""use"" + 0.007*""return"" + 0.007*""parameter"" + 0.007*""function"""
+5,"0.015*""option"" + 0.015*""price"" + 0.014*""model"" + 0.014*""volatility"" + 0.009*""risk"" + 0.009*""time"" + 0.008*""pricing"" + 0.008*""hedge"" + 0.007*""density"" + 0.007*""maturity"""
+6,"0.015*""data"" + 0.011*""model"" + 0.010*""variable"" + 0.006*""value"" + 0.006*""regression"" + 0.005*""tree"" + 0.005*""use"" + 0.005*""method"" + 0.005*""feature"" + 0.004*""analysis"""
+7,"0.012*""crypto"" + 0.012*""function"" + 0.010*""contract"" + 0.010*""currency"" + 0.009*""blockchain"" + 0.009*""value"" + 0.008*""smart"" + 0.007*""token"" + 0.007*""coin"" + 0.007*""address"""
+8,"0.018*""svi"" + 0.017*""day"" + 0.016*""model"" + 0.015*""week"" + 0.011*""di"" + 0.009*""period"" + 0.009*""function"" + 0.008*""learn"" + 0.008*""minute"" + 0.008*""data"""
+9,"0.017*""portfolio"" + 0.015*""data"" + 0.013*""cluster"" + 0.009*""number"" + 0.009*""factor"" + 0.009*""weight"" + 0.008*""matrix"" + 0.007*""use"" + 0.006*""index"" + 0.006*""pc"""
