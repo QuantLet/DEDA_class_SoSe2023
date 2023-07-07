@@ -10,7 +10,7 @@ import pdfplumber
 # Import and set up plotting
 import matplotlib.pyplot as plt
 plt.rcParams['figure.figsize'] = (12, 6.75)
-plt.style.use('seaborn-v0_8-whitegrid')
+plt.style.use('seaborn-v0_8-white')
 
 # Importing Natural Language Toolkit
 import nltk
