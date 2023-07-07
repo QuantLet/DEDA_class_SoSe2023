@@ -106,7 +106,7 @@ def preprocess_text(first_input_folder = None, theses = None, inter_output_folde
         with pdfplumber.open(f"{first_input_folder}/{thesis}") as pdf:
             my_list = []
             
-            print(f'Currently working on {thesis}.')
+            print(f'\nCurrently working on {thesis}.')
             for page in pdf.pages:
                 
                 # Set up variable to hold text
@@ -226,9 +226,7 @@ def preprocess_text(first_input_folder = None, theses = None, inter_output_folde
         plt.savefig(os.path.join(viz_folder, 'lengths_dist_w_shortwords.png'), transparent=True, dpi = 300)
         plt.show()
         plt.close()
-        print('\n')
-        print(f'Total amount of words before dropping single character words: {len(tokens_w_shortwords)} ')
-        print('\n')
+        print(f'\nTotal amount of words before dropping single character words: {len(tokens_w_shortwords)} ')
 
         
         # Plot the distribution of word lengths after removing single-character words
@@ -239,9 +237,7 @@ def preprocess_text(first_input_folder = None, theses = None, inter_output_folde
         plt.savefig(os.path.join(viz_folder, 'lengths_dist_wo_shortwords.png'), transparent=True, dpi = 300)
         plt.show()
         plt.close()
-        print('\n')
-        print(f'Total amount of words after dropping single character words and other pdf reader mistakes: {len(tokens_w_stopwords)} ')
-        print('\n')
+        print(f'\nTotal amount of words after dropping single character words and other pdf reader mistakes: {len(tokens_w_stopwords)} ')
         
         
         # Plot five most common words (including stopwords - uses same variable as the previous plot)
@@ -254,9 +250,7 @@ def preprocess_text(first_input_folder = None, theses = None, inter_output_folde
         plt.show()
         # Close plot
         plt.close()
-        print('\n')
-        print(f'Total amount of words before removing stopwords: {len(tokens_w_stopwords)}')
-        print('\n')
+        print(f'\nTotal amount of words before removing stopwords: {len(tokens_w_stopwords)}')
 
         # Plot five most common words (excluding stopwords)
         pd.Series(tokens_wo_stopwords).value_counts()[:5].plot(kind = 'bar',
@@ -266,9 +260,7 @@ def preprocess_text(first_input_folder = None, theses = None, inter_output_folde
         plt.show()
         # Close plot
         plt.close()
-        print('\n')
-        print(f'Total amount of words after removing stopwords: {len(tokens_wo_stopwords)}')
-        print('\n')
+        print(f'\nTotal amount of words after removing stopwords: {len(tokens_wo_stopwords)}')
                 
         # Plot distribution of word frequencies
         pd.Series(tokens_processed).value_counts().value_counts().sort_index().plot(kind='line')
@@ -299,5 +291,4 @@ def preprocess_text(first_input_folder = None, theses = None, inter_output_folde
         
         # Viz section ends
     
-    print('Preprocessing succesfully completed.')
-    print('\n')
+    print('\nPreprocessing succesfully completed.\n')

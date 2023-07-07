@@ -29,12 +29,11 @@ def master_theses_scraper(url, down_dir, headers):
 
     # Get all the links in the container, under <a> in the HTML code
     links = link_container.find_all('a')
-    print('Scraping complete.')
-    print(f'{len(links)} entries found.')
-    print('An example entry in our links container looks like:\n', links[0])
-    print('\n')
+    print('\nWeb page accessed.')
+    print(f'\n{len(links)} entries found.')
+    print('\nAn example entry in our links container looks like:\n', links[0])
     
-    print('Identifying invalid links...')
+    print('\nIdentifying invalid links...')
     # Set up empty container for the unusable link
     remove_from_list = []
 
@@ -49,14 +48,14 @@ def master_theses_scraper(url, down_dir, headers):
             remove_from_list.append(link)
             continue
 
-    print(f'{len(remove_from_list)} invalid links identified.')
+    print(f'\n{len(remove_from_list)} invalid links identified.')
 
     # Use list comprehension to drop the 404 links
     valid_links = [link for link in links if link not in remove_from_list]
 
-    print(f'{len(valid_links)} entries remain.')
+    print(f'\n{len(valid_links)} entries remain.')
 
-    print('Identifying Master\'s Theses...')
+    print('\nIdentifying Master\'s Theses...')
     # Set up a new empty container for links to the master's papers
     master_links = []
     master_dates = []
@@ -74,10 +73,10 @@ def master_theses_scraper(url, down_dir, headers):
             master_links.append(link)
             master_dates.append(date_span.text)
 
-    print(f'{len(master_links)} Master\'s Theses identified.')
-    print('A sample entry looks as follows:\n', master_links[0])
+    print(f'\n{len(master_links)} Master\'s Theses identified.')
+    print('\nA sample entry looks as follows:\n', master_links[0])
 
-    print('Retrieving download links...')
+    print('\nRetrieving download links...')
 
     # Set up base_url to concatenate with the individual download links
     base_url = 'https://edoc.hu-berlin.de'
@@ -108,23 +107,26 @@ def master_theses_scraper(url, down_dir, headers):
             dl_dates.append(master_dates[master_links.index(link)])
             
         else:
-            print(f"Due to missing link, dropped entry: {link}")
+            print(f"\nDue to missing link, dropped entry: {link}")
 
-    print('Retrieval complete.')
+    print('\nRetrieval complete.')
 
    
-    print('Checking if all download links accessible...') # Essentially an optional step that just looks cool but actually takes too much time
+    #Essentially an optional step that just looks cool but actually takes too much time
+    #print('\nChecking if all download links accessible...') #
 
-    for link in dl_links:
-        verify_response = requests.get(link)
-        if response.status_code != 200:
-            print(f'Link {link} is not working.')
+    #for link in dl_links:
+        #verify_response = requests.get(link)
+        #if response.status_code != 200:
+            #print(f'Link {link} is not working.')
 
-    print('All done!')
-    print('An example of our link looks like:\n', dl_links[0])
-    print(f'We can download {len(dl_links)} Master\'s Theses in total.')
+    #print('\nAll done!')
+    
+    
+    print('\nAn example of our link looks like:\n', dl_links[0])
+    print(f'\nWe can download {len(dl_links)} Master\'s Theses in total.')
 
-    print('Download in progress...')
+    print('\nDownload in progress...')
 
     # Using enumerate, our filenames will be numbered
     for index, link in enumerate(dl_links, start=1):
@@ -138,6 +140,6 @@ def master_theses_scraper(url, down_dir, headers):
             wget.download(link, out=file_path)
         # We should not expect any errors, but just in case
         except Exception as e:
-            print(f'Failed to download file: {filename}. Error: {str(e)}')
+            print(f'\nFailed to download file: {filename}. Error: {str(e)}')
 
-    print('Download Complete')
+    print('\nDownload Complete\n')
