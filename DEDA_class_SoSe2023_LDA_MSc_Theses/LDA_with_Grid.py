@@ -207,7 +207,7 @@ class LDA:
         if not os.path.exists('Topics_CSVs'):
             os.makedirs('Topics_CSVs')
         
-        scores_df.to_csv(os.path.join('Topics_CSVs', 'scores_from_search'), index = False)
+        scores_df.to_csv(os.path.join('Topics_CSVs', 'scores_from_search.csv'), index = False)
         
         
     def lineplot_scores(self):
