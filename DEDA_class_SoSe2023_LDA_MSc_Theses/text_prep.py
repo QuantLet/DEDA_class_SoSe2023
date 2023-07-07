@@ -10,7 +10,7 @@ import pdfplumber
 # Import and set up plotting
 import matplotlib.pyplot as plt
 plt.rcParams['figure.figsize'] = (12, 6.75)
-plt.rcParams['font.size'] = 28
+plt.rcParams['font.size'] = 24
 plt.style.use('seaborn-v0_8-white')
 
 # Importing Natural Language Toolkit
