@@ -56,7 +56,7 @@ class CorpusMaker:
         dates = {}
 
         for thesis_name in theses:
-            date = thesis_name[-14:-4]
+            date = thesis_name[-18:-8]
             dates[thesis_name] = date.split('-')
 
         sorted_dates = sorted(dates.items(), key=lambda x: x[1])
