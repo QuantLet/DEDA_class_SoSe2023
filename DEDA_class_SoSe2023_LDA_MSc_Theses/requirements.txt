@@ -1,4 +1,4 @@
-pprint
+
 ipython
 ipykernel
 requests 
