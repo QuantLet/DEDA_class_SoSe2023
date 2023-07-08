@@ -1,5 +1,6 @@
 # Welcome to "An odyssey through MSc waters"!
 
+```yaml
 Name of Quantlet: 'DEDA_class_SoSe2023_LDA_MSc_Theses' 
 
 Published in: 'DEDA_class_SoSe2023'
@@ -17,4 +18,5 @@ See also:  '1) Demo Notebook.ipynb
            5) corpus_maker.py
            6) LDA_with_Grid.py
 
+```
           
