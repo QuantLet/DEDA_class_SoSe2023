@@ -1,2 +1,2 @@
-# Welcome to An odyssey through MSc waters!
+# Welcome to "An odyssey through MSc waters"!
 
