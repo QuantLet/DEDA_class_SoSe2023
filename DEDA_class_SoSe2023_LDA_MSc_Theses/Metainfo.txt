@@ -1,0 +1,9 @@
+Name of Quantlet: 'LDA_MSc_Theses' 
+
+Published in: 'DEDA_class_SoSe2024'
+
+Description: 'Collects Master's Theses from the LvB Chair of Statistics at HU Berlin. Applies LDA and DTM following automated pre-processing. The results are visuzalizations of topics distriubtions and their evolution over time.'
+
+Keywords: 'latent dirichlet allocation, dynamic topic modeling, topic modeling, webscraping, plots, natural language processing, object-oriented programming'
+
+Author: 'Timur Tenishev, Bachana Anasashvili, Yaman Tanilkan'
