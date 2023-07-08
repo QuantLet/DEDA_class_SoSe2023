@@ -342,7 +342,7 @@ class LDA:
    
     def time_slicer(self, year_batches):
         '''
-        Takes a list of several year ranges and converts them into time slices as an input for dtm.
+        A helper function that takes a list of several year ranges and converts them into time slices as an input for dtm.
         
         Args:
             year_batches: List of several year ranges
@@ -395,11 +395,14 @@ class LDA:
         # Specify model
         seq_m = LdaSeqModel(corpus = self.corpus, id2word = self.dictionary, time_slice = self.time_slice,  num_topics = self.best_params[0], alphas = self.best_params[1], initialize = 'ldamodel', lda_model = self.best_model, random_state = 66)
         
+        print('\nThe model is being built. This may take some time...')
+        
         if not os.path.exists('LDAModels_Gensim'):
             os.makedirs('LDAModels_Gensim')
         # Save model in directory            
         seq_m.save(os.path.join('LDAModels_Gensim', 'DTM_model.gensim'))
         
+        print('\nThe model successfully built. Currently processing its output...')
         # Empty container for model's output topics
         DTM_topics = []
         
@@ -444,8 +447,26 @@ class LDA:
             # Save the dataframe as a CSV file
             df.to_csv(file_path)
             
-        # Define how many top words to plot per topic over time
-        k = 5
+        print('\nAll done!')
+        
+        return seq_m
+        
+        
+    def DTM_Plot(self, k = 5, topic_folder = None): 
+        """
+        Method to make plots of the topic over time output of DTM
+        
+        Args:
+            k: integer, number of top words to visualize per topic. By default set to 5
+            topic folder: Directory that contains topics saved as CSV files by the sequential model
+        Returns:
+            Plots
+        """
+    
+        # To access the entries in the topics_word_time folder
+        files = os.listdir(topic_folder)
+        topics_words_time = [pd.read_csv(os.path.join(topic_folder, file), index_col=0) for file in files]
+        # Empty container for 
         top_k_words_topics_overtime = []
         
         #takes top k words from the dataframe for each topic
@@ -463,9 +484,9 @@ class LDA:
         for index, topic in enumerate(top_k_words_topics_overtime, start = 1):
             # Plotting parameters
             plt.style.use('seaborn-v0_8-white')
-            plt.rcParams['figure.figsize'] = [12, 6.75]
+            plt.rcParams['figure.figsize'] = [14.4, 8.1]
             plt.rcParams['font.size'] = 24
-            plt.title(f'Topic {index}: 5 Most Wrequent Words Evolution')
+            plt.title(f'Topic {index}: 5 Most Wrequent Words Over Time')
             plt.xlabel('Period')
             plt.ylabel('Word Frequency')
 
@@ -479,6 +500,3 @@ class LDA:
             plt.savefig(f'Plots/topic{index}_evolution.png', dpi = 300, transparent = True)
             plt.show()
             plt.close()
-
-
-        return seq_m
