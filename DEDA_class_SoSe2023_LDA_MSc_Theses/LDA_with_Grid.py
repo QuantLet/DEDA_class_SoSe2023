@@ -451,8 +451,8 @@ class LDA:
         
     def DTM_upload(self, year_batches):
         '''
-        Builds a DTM model following the best parameters received from grid_search. Note: function will not work without conducting a grid search.
-        
+        An alternative method that will process pre-built DTM model.
+       
         Inputs:
             year_batches: List of several year ranges
         Returns:
