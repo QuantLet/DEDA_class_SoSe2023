@@ -1,0 +1,16 @@
+
+ipython
+ipykernel
+requests 
+bs4
+wget
+nltk
+gensim
+pandas
+numpy
+deep_translator
+langdetect
+matplotlib
+pyLDAvis
+wordcloud
+pdfplumber

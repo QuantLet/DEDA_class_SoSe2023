@@ -48,7 +48,7 @@ class CorpusMaker:
 
         '''
 
-        print('Creating corpus...')
+        print('\nCreating corpus...')
 
         theses = os.listdir(self.input_folder)
         
@@ -56,7 +56,7 @@ class CorpusMaker:
         dates = {}
 
         for thesis_name in theses:
-            date = thesis_name[-14:-4]
+            date = thesis_name[-18:-8]
             dates[thesis_name] = date.split('-')
 
         sorted_dates = sorted(dates.items(), key=lambda x: x[1])
@@ -94,7 +94,7 @@ class CorpusMaker:
         tokens_distribution_wo_rare_words = tokens_distribution[tokens_distribution > 2]
         theses_tokens_wo_rare_words = [[token for token in thesis if token in tokens_distribution_wo_rare_words] for thesis in theses_tokens]
 
-        print(f'After removing {sum(tokens_distribution) - sum(tokens_distribution_wo_rare_words)} rare words, total amount of words in the preprocessed texts decreased from {sum(tokens_distribution)} to {sum(tokens_distribution_wo_rare_words)}')    
+        print(f'\nAfter removing {sum(tokens_distribution) - sum(tokens_distribution_wo_rare_words)} rare words, total amount of words in the preprocessed texts decreased from {sum(tokens_distribution)} to {sum(tokens_distribution_wo_rare_words)}')    
 
         # Create texts
         self.texts = theses_tokens_wo_rare_words
@@ -136,7 +136,7 @@ class CorpusMaker:
         with open(os.path.join('DICT_CORP', 'dates.pkl'), 'wb') as file:
             pickle.dump(self.dates, file)
         
-        print('Corpus succesfully created.')
+        print('\nCorpus succesfully created.')
 
         return self.dictionary, self.dictionary_token2id, self.corpus, self.texts, self.dates
 
@@ -147,10 +147,10 @@ class CorpusMaker:
 
         '''
         for i, thesis in enumerate(self.corpus):
-            print(f"Thesis {i+1}")
+            print(f"\nThesis {i+1}")
             sorted_thesis = sorted(thesis, key=lambda x: x[1], reverse=True)
             for id, freq in sorted_thesis[:amount]:
-                print(f"{self.dictionary[id]}: {freq}")
+                print(f"\n{self.dictionary[id]}: {freq}")
             print() 
 
     def make_wordcloud(self):
