@@ -89,5 +89,5 @@ class RedditCommentLoader(object):
 
 
 # args = parse_args()
-redd = RedditCommentLoader(from_id=None)  # Change to the preferred post id
+redd = RedditCommentLoader(from_id='j1fmmo')  # Change to the preferred post id. Default is the first post on the Kaggle database
 redd.run()
