@@ -1,4 +1,26 @@
+[<img src="https://github.com/QuantLet/Styleguide-and-FAQ/blob/master/pictures/banner.png" width="888" alt="Visit QuantNet">](http://quantlet.de/)
+
+## [<img src="https://github.com/QuantLet/Styleguide-and-FAQ/blob/master/pictures/qloqo.png" alt="Visit QuantNet">](http://quantlet.de/) **MVAresponsesurface** [<img src="https://github.com/QuantLet/Styleguide-and-FAQ/blob/master/pictures/QN2.png" width="60" alt="Visit QuantNet 2.0">](http://quantlet.de/)
+
+```yaml
+
+Name of QuantLet: RedditWSBSentiment
+
+Published in: DEDA Class SoSe2023
+
+Description: Cross Correlation Analysis of Sentiment from Posts and Comments in the subreddit r/wallstreetbets and GME and AMC stocks during the Gamestop short squeeze of 2021.
+
+Keywords: sentiment analysis, nlp, financial, volatility, return, asset, web scrapping, social media, reddit
+
+Author: Antonio Alvarez, Rodion Frolov, Ozan Ayhan
+
+Submitted: Monday, 10 of July 2023 by Antonio Alvarez
+
+```
+
 # Cross Correlation of the Sentiment in r/wallstreetbets and GME and AMC stocks during the Gamestop short squeeze
+
+![Proportion of Positives and Negatives](https://github.com/QuantLet/DEDA_class_SoSe2023/tree/main/DEDA_class_SoSe2023_Reddit_WSB/images/n_posts_comments.png)
 
 ## Objective
 Analyze the potential correlation between GME and AMC stock with Reddit posts and comments using Sentiment and Cross 
