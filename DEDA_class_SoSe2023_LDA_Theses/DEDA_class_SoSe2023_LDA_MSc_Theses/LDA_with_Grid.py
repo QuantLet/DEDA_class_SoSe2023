@@ -547,7 +547,7 @@ class LDA:
             plt.style.use('seaborn-v0_8-white')
             plt.rcParams['figure.figsize'] = [14.4, 8.1]
             plt.rcParams['font.size'] = 24
-            plt.title(f'Topic {index}: 5 Most Wrequent Words Over Time')
+            plt.title(f'Topic {index}: 5 Most Frequent Words Over Time')
             plt.xlabel('Period')
             plt.ylabel('Word Frequency')
 
