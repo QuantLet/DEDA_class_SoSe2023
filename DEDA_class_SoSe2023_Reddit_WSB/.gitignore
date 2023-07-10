@@ -1,0 +1,10 @@
+.idea/
+.venv/
+data/
+config-personal.yml
+**/.DS_Store
+**/__pycache__/
+**/logs
+pres/
+**/.ipynb_checkpoints/
+img/
