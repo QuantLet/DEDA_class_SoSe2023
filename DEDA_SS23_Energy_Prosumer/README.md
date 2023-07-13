@@ -2,7 +2,7 @@ Name of Quantlet: 'DEDA_SS23_Energy_Prosumer'
 
 Published in: 'DEDA class 2023SS'
 
-Description: "Optimizing Community Energy: Prosumer Analysis and Energy Optimization Strategies"
+Project Name: "Optimizing Community Energy: Prosumer Analysis and Energy Optimization Strategies"
 
 Keywords: 'Energy, Prosumer, Smart Home, Heat Pump'
 
