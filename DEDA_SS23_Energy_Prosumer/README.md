@@ -1,6 +1,6 @@
 Name of Quantlet: 'DEDA_SS23_Energy_Prosumer'
 
-Published in: 'DEDA class 2023SS'
+Published in: 'DEDA_class_SoSe2023'
 
 Project Name: "Optimizing Community Energy: Prosumer Analysis and Energy Optimization Strategies"
 
