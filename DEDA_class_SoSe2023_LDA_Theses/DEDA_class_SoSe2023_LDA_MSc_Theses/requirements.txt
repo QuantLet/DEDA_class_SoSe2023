@@ -14,3 +14,4 @@ matplotlib
 pyLDAvis
 wordcloud
 pdfplumber
+matplotlib-label-lines
