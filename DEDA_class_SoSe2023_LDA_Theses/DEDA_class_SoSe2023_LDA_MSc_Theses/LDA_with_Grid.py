@@ -30,11 +30,13 @@ class LDA:
         MSc_LDA = LDA(corpus, dictionary, texts) <-- initializes the class
         m = MSc_LDA.simple_fit() <-- fits one model with custom specs
         MSc_LDA.grid_search(n_topics, alphas, betas) <-- conducts grid search
-        MSc_LDA.lineplot_scores() <-- plots coherence scores from grid search rounds
+        MSc_LDA.lineplot_scores() <-- plots coherence scores from the first grid search round
+        MSc_LDA.heatmap_scores() <-- plots coherence scores from the second grid search round
         m = MSc_LDA.build_best_model() <-- fits best model
         MSc_LDA.viz() <-- vizualizes best/simple model
         MSc_LDA.time_slicer(year_batches) <-- prepares date input for DTM
         MSc_LDA.DTM() <-- builds the dynamic model assuming grid search for LDA has been carried out
+        MSc_LDA.DTM_Plot(topic_folder = topic_folder) <-- plots topics evolution over time periods
     
     '''
     
