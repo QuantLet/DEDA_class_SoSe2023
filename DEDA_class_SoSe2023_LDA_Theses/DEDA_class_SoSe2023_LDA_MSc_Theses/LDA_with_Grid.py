@@ -9,6 +9,9 @@ import numpy as np
 import os
 import re
 from labellines import labelLines
+import seaborn as sns
+import warnings
+warnings.filterwarnings("ignore")
 
 class LDA:
     '''
@@ -256,7 +259,37 @@ class LDA:
         plt.show()
         plt.close()
         
-         
+    def heatmap_scores(self):
+        '''
+        Constructs heatmap for the second stage of grid search: alphas on Y axis, betas on X axis, the interesection gives coherence score
+        '''
+        df = pd.read_csv('Topics_CSVs/scores_from_search.csv')
+        df = df.drop(['n_topics', 'perplexity_score'], axis = 1)
+        
+        #
+        pivot_table = pd.pivot_table(df, index='alpha', columns='beta', values='coherence_score')
+        pivot_table.columns = [round(float(col), 1) if col.replace('.', '', 1).isdigit() else col for col in pivot_table.columns]
+        pivot_table.index = [round(float(idx), 1) if idx.replace('.', '', 1).isdigit() else idx for idx in pivot_table.index]
+        pivot_table = pivot_table.iloc[::-1]
+        
+        # Set the figure size and font size
+        sns.set(rc={'figure.figsize': (12, 6.75)})
+        sns.set(font_scale=1.5)
+        # Set the seaborn style
+        sns.set(style="white")
+        
+        fig, ax = plt.subplots()
+        sns.heatmap(pivot_table, ax=ax, cmap="crest")
+
+        ax.set_title('GridSearch Heatmap: Coherence Score', fontdict={'fontsize': 24})
+        ax.set_xlabel('Beta Values', fontdict={'fontsize': 24})
+        ax.set_ylabel('Alpha Values', fontdict={'fontsize': 24})
+        ax.tick_params(axis='x', labelsize=15)  # Format x-axis tick labels
+        ax.tick_params(axis='y', labelsize=15, labelrotation=0)
+
+        plt.tight_layout()
+        plt.savefig('Plots/grid_search_2_heatmap.png', dpi=300, transparent=True)
+        plt.show()
         
     
     def build_best_model(self):
@@ -533,7 +566,7 @@ class LDA:
 
         for file_name in files:
             try:
-                topic_no = re.search(r'\d+', file_name).group()
+                topic_no = int(re.search(r'\d+', file_name).group())
                 topics_no[topic_no] = file_name
             except:
                 continue
