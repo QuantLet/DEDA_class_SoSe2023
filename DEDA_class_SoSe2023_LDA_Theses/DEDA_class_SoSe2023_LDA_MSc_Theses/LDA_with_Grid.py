@@ -7,6 +7,8 @@ import pandas as pd
 import csv
 import numpy as np
 import os
+import re
+from labellines import labelLines
 
 class LDA:
     '''
@@ -526,6 +528,19 @@ class LDA:
     
         # To access the entries in the topics_word_time folder
         files = os.listdir(topic_folder)
+        
+        topics_no = {}
+
+        for file_name in files:
+            try:
+                topic_no = re.search(r'\d+', file_name).group()
+                topics_no[topic_no] = file_name
+            except:
+                continue
+
+        #sorted list of topic csv files
+        files = [topics_no[key] for key in sorted(topics_no.keys())]
+        
         topics_words_time = [pd.read_csv(os.path.join(topic_folder, file), index_col=0) for file in files]
         # Empty container for 
         top_k_words_topics_overtime = []
@@ -555,8 +570,10 @@ class LDA:
             for word in topic.index:
                 frequencies = topic.loc[word].values
                 plt.plot(topic.columns, frequencies, label=word)
-                plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-
+                #plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+            
+            labelLines(plt.gca().get_lines(), zorder=2.5)
+            
             plt.tight_layout()    
             plt.savefig(f'Plots/topic{index}_evolution.png', dpi = 300, transparent = True)
             plt.show()
