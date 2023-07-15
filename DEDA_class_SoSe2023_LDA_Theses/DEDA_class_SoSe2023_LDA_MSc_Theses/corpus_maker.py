@@ -30,9 +30,9 @@ class CorpusMaker:
         
     Methods:
         make_corpus: Processes the filtered theses texts, drops rare words overall, creates corpus.
-        show_top_words: Prints the most frequent words per thesis in the corpus
-        make_wordcloud: Generates a wordcloud image from the corpus. 
-        make_UMAP: applies UMAP to term frequencies for dimensionality reduction and visualizes as 2d graph
+        show_top_words: Prints the most frequent words per thesis in the corpus.
+        make_wordcloud: Generates a wordcloud image from the corpus.
+        make_UMAP: applies UMAP to term frequencies for dimensionality reduction and visualizes as 2d graph.
     '''
     
     
@@ -194,7 +194,7 @@ class CorpusMaker:
         '''
         
         docs = []
-        
+                
         for thesis_list in self.texts:
             docs.extend(thesis_list)
 
@@ -205,8 +205,8 @@ class CorpusMaker:
         tfidf_matrix = vectorizer.fit_transform(docs)
         
         # Apply UMAP and plot results
-        mapper = UMAP().fit(tfidf_matrix)
+        mapper = UMAP(random_state=66).fit(tfidf_matrix)
         umap.plot.points(mapper)
-        plt.savefig('Plots/UMAP terms.png', dpi = 300)
+        plt.savefig('Plots/UMAP terms.png', transparent = True, dpi = 300)
         plt.show()
         plt.close()
