@@ -16,3 +16,6 @@ wordcloud
 pdfplumber
 matplotlib-label-lines
 seaborn
+yellowbrick
+umap-learn[plot]
+umap-learn
