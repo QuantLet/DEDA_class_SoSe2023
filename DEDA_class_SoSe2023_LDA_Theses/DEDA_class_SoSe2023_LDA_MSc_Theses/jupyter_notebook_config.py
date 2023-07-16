@@ -1,0 +1,1 @@
+c.FileContentsManager.checkpoints_kwargs = {'root_dir': ''}
