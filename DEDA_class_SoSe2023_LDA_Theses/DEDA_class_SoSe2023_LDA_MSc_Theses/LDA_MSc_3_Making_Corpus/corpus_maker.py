@@ -180,10 +180,6 @@ class CorpusMaker:
         plt.figure(figsize=(19.2, 14.4))
         plt.imshow(wordcloud)
         plt.axis('off')
-        
-        if not os.path.exists('Plots'):
-            os.makedirs('Plots')
-        
         plt.savefig('MSc_Wordcloud.png', transparent = True, dpi = 300)
         plt.show()
         plt.close()
