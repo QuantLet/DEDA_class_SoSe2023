@@ -1,4 +1,4 @@
-Name of QuantLet: 
+Name of QuantLet: Covid_19_Financial_News_Sentiment_Analysis
 
 Published in: DEDA_class_SoSe2023
  
