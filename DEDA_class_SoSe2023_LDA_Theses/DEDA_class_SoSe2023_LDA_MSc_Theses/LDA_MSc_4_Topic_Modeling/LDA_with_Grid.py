@@ -243,9 +243,7 @@ class LDA:
         ax1.set_ylabel('Coherence Score')
         ax1.plot(topics, coherence_scores)
         fig1.tight_layout()
-        if not os.path.exists('Plots'):
-            os.makedirs('Plots')
-        plt.savefig(os.path.join('Plots', 'Coherence_Scores.png'), dpi = 300, transparent = True)
+        plt.savefig('1_Coherence_Scores.png'), dpi = 300, transparent = True)
         plt.show()
         plt.close()
             
@@ -255,7 +253,7 @@ class LDA:
         ax2.plot(topics, perplexity_scores)
             
         fig2.tight_layout()
-        plt.savefig('1_Perplexity_Scores.png', dpi = 300, transparent = True)        
+        plt.savefig('2_Perplexity_Scores.png', dpi = 300, transparent = True)        
         plt.show()
         plt.close()
         
@@ -290,7 +288,7 @@ class LDA:
         cax.tick_params(labelsize=24) #format colorbar tick labels
         
         plt.tight_layout()
-        plt.savefig('2_grid_search_2_heatmap.png', dpi=300, transparent=True)
+        plt.savefig('3_grid_search_2_heatmap.png', dpi=300, transparent=True)
         plt.show()
         
     
