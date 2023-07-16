@@ -10,7 +10,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from yellowbrick.text import UMAPVisualizer
 from umap.umap_ import UMAP
 import umap.plot
-from sklearn.feature_extraction.text import TfidfVectorizer
 
 class CorpusMaker:
     '''
@@ -189,20 +188,20 @@ class CorpusMaker:
         Small function to generate UMAP visualization of terms distribution
         '''
         
-        docs = []
-                
-        for thesis_list in self.texts:
-            docs.extend(thesis_list)
+        docs = [" ".join(text) for text in self.texts]
 
         # Create an instance of TfidfVectorizer
         vectorizer = TfidfVectorizer()
-
+        
         # Fit and transform the corpus using TF-IDF vectorization
         tfidf_matrix = vectorizer.fit_transform(docs)
+        tfidf_matrix = tfidf_matrix.T
+        print(f'Shape of the matrix: {tfidf_matrix.shape}')
         
         # Apply UMAP and plot results
-        mapper = UMAP(random_state=66).fit(tfidf_matrix)
-        umap.plot.points(mapper)
+        tfidf_embedding = UMAP(metric='hellinger', random_state = 66).fit(tfidf_matrix)
+        print(f'Shape after UMAP: {tfidf_embedding.embedding_.shape}'
+        fig = umap.plot.points(tfidf_embedding)
         plt.savefig('UMAP terms.png', transparent = True, dpi = 300)
         plt.show()
         plt.close()
