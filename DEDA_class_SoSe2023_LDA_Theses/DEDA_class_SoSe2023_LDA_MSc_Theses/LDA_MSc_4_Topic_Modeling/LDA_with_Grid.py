@@ -243,7 +243,7 @@ class LDA:
         ax1.set_ylabel('Coherence Score')
         ax1.plot(topics, coherence_scores)
         fig1.tight_layout()
-        plt.savefig('1_Coherence_Scores.png'), dpi = 300, transparent = True)
+        plt.savefig('1_Coherence_Scores.png', dpi = 300, transparent = True)
         plt.show()
         plt.close()
             
