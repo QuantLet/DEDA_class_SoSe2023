@@ -8,7 +8,7 @@ Keywords: 'latent dirichlet allocation, dynamic topic modeling, topic modeling, 
 
 Author: 'Timur Tenishev, Bachana Anasashvili, Yaman Tanilkan'
 
-See also:  '1) Demo Notebook.ipynb
+See also:  1) Demo Notebook.ipynb
            2) thesis_scraper.py
            3) lang_detect.py
            4) thesis_scraper.py
