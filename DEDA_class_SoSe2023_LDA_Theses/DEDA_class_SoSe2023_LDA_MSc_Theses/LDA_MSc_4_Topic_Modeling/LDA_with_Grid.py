@@ -301,7 +301,6 @@ class LDA:
             The LDA model.
         '''
         
-        # A neat line of if statetement included as a flex
         if self.best_params:
             n, alpha, beta = self.best_params
             
