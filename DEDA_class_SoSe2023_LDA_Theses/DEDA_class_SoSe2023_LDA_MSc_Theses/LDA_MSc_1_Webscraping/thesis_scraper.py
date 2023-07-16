@@ -110,17 +110,6 @@ def master_theses_scraper(url, down_dir, headers):
             print(f"\nDue to missing link, dropped entry: {link}")
 
     print('\nRetrieval complete.')
-
-   
-    #Essentially an optional step that just looks cool but actually takes too much time
-    #print('\nChecking if all download links accessible...') #
-
-    #for link in dl_links:
-        #verify_response = requests.get(link)
-        #if response.status_code != 200:
-            #print(f'Link {link} is not working.')
-
-    #print('\nAll done!')
     
     
     print('\nAn example of our link looks like:\n', dl_links[0])
