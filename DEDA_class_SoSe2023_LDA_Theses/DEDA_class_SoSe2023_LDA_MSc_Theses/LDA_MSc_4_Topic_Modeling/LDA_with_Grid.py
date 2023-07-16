@@ -284,9 +284,11 @@ class LDA:
         ax.set_title('GridSearch: Coherence Score', fontdict={'fontsize': 24})
         ax.set_xlabel('Beta', fontdict={'fontsize': 24})
         ax.set_ylabel('Alpha', fontdict={'fontsize': 24})
-        ax.tick_params(axis='x', labelsize=15)  # Format x-axis tick labels
-        ax.tick_params(axis='y', labelsize=15, labelrotation=0)
-
+        ax.tick_params(axis='x', labelsize=24)  # Format x-axis tick labels
+        ax.tick_params(axis='y', labelsize=24, labelrotation=0)
+        cax = ax.figure.axes[-1]
+        cax.tick_params(labelsize=24) #format colorbar tick labels
+        
         plt.tight_layout()
         plt.savefig('2_grid_search_2_heatmap.png', dpi=300, transparent=True)
         plt.show()
