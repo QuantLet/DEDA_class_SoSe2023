@@ -7,6 +7,11 @@ import pandas as pd
 import csv
 import numpy as np
 import os
+import re
+from labellines import labelLines
+import seaborn as sns
+import warnings
+warnings.filterwarnings("ignore")
 
 class LDA:
     '''
@@ -25,11 +30,13 @@ class LDA:
         MSc_LDA = LDA(corpus, dictionary, texts) <-- initializes the class
         m = MSc_LDA.simple_fit() <-- fits one model with custom specs
         MSc_LDA.grid_search(n_topics, alphas, betas) <-- conducts grid search
-        MSc_LDA.lineplot_scores() <-- plots coherence scores from grid search rounds
+        MSc_LDA.lineplot_scores() <-- plots coherence scores from the first grid search round
+        MSc_LDA.heatmap_scores() <-- plots coherence scores from the second grid search round
         m = MSc_LDA.build_best_model() <-- fits best model
         MSc_LDA.viz() <-- vizualizes best/simple model
         MSc_LDA.time_slicer(year_batches) <-- prepares date input for DTM
         MSc_LDA.DTM() <-- builds the dynamic model assuming grid search for LDA has been carried out
+        MSc_LDA.DTM_Plot(topic_folder = topic_folder) <-- plots topics evolution over time periods
     
     '''
     
@@ -254,7 +261,37 @@ class LDA:
         plt.show()
         plt.close()
         
-         
+    def heatmap_scores(self):
+        '''
+        Constructs heatmap for the second stage of grid search: alphas on Y axis, betas on X axis, the interesection gives coherence score
+        '''
+        df = pd.read_csv('Topics_CSVs/scores_from_search.csv')
+        df = df.drop(['n_topics', 'perplexity_score'], axis = 1)
+        
+        #
+        pivot_table = pd.pivot_table(df, index='alpha', columns='beta', values='coherence_score')
+        pivot_table.columns = [round(float(col), 1) if col.replace('.', '', 1).isdigit() else col for col in pivot_table.columns]
+        pivot_table.index = [round(float(idx), 1) if idx.replace('.', '', 1).isdigit() else idx for idx in pivot_table.index]
+        pivot_table = pivot_table.iloc[::-1]
+        
+        # Set the figure size and font size
+        sns.set(rc={'figure.figsize': (12, 6.75)})
+        sns.set(font_scale=1.5)
+        # Set the seaborn style
+        sns.set(style="white")
+        
+        fig, ax = plt.subplots()
+        sns.heatmap(pivot_table, ax=ax, cmap="crest")
+
+        ax.set_title('GridSearch Heatmap: Coherence Score', fontdict={'fontsize': 24})
+        ax.set_xlabel('Beta Values', fontdict={'fontsize': 24})
+        ax.set_ylabel('Alpha Values', fontdict={'fontsize': 24})
+        ax.tick_params(axis='x', labelsize=15)  # Format x-axis tick labels
+        ax.tick_params(axis='y', labelsize=15, labelrotation=0)
+
+        plt.tight_layout()
+        plt.savefig('Plots/grid_search_2_heatmap.png', dpi=300, transparent=True)
+        plt.show()
         
     
     def build_best_model(self):
@@ -526,6 +563,19 @@ class LDA:
     
         # To access the entries in the topics_word_time folder
         files = os.listdir(topic_folder)
+        
+        topics_no = {}
+
+        for file_name in files:
+            try:
+                topic_no = int(re.search(r'\d+', file_name).group())
+                topics_no[topic_no] = file_name
+            except:
+                continue
+
+        #sorted list of topic csv files
+        files = [topics_no[key] for key in sorted(topics_no.keys())]
+        
         topics_words_time = [pd.read_csv(os.path.join(topic_folder, file), index_col=0) for file in files]
         # Empty container for 
         top_k_words_topics_overtime = []
@@ -555,8 +605,10 @@ class LDA:
             for word in topic.index:
                 frequencies = topic.loc[word].values
                 plt.plot(topic.columns, frequencies, label=word)
-                plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-
+                #plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+            
+            labelLines(plt.gca().get_lines(), zorder=2.5)
+            
             plt.tight_layout()    
             plt.savefig(f'Plots/topic{index}_evolution.png', dpi = 300, transparent = True)
             plt.show()

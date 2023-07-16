@@ -6,7 +6,11 @@ from gensim import corpora
 from nltk.tokenize import word_tokenize
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
-
+from sklearn.feature_extraction.text import TfidfVectorizer
+from yellowbrick.text import UMAPVisualizer
+from umap.umap_ import UMAP
+import umap.plot
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 class CorpusMaker:
     '''
@@ -26,8 +30,9 @@ class CorpusMaker:
         
     Methods:
         make_corpus: Processes the filtered theses texts, drops rare words overall, creates corpus.
-        show_top_words: Prints the most frequent words per thesis in the corpus
-        make_wordcloud: Generates a wordcloud image from the corpus. 
+        show_top_words: Prints the most frequent words per thesis in the corpus.
+        make_wordcloud: Generates a wordcloud image from the corpus.
+        make_UMAP: applies UMAP to term frequencies for dimensionality reduction and visualizes as 2d graph.
     '''
     
     
@@ -180,5 +185,28 @@ class CorpusMaker:
             os.makedirs('Plots')
         
         plt.savefig(os.path.join('Plots', 'MSc_Wordcloud.png'), transparent = True, dpi = 300)
+        plt.show()
+        plt.close()
+        
+    def make_UMAP(self):
+        '''
+        Small function to generate UMAP visualization of terms distribution
+        '''
+        
+        docs = []
+                
+        for thesis_list in self.texts:
+            docs.extend(thesis_list)
+
+        # Create an instance of TfidfVectorizer
+        vectorizer = TfidfVectorizer()
+
+        # Fit and transform the corpus using TF-IDF vectorization
+        tfidf_matrix = vectorizer.fit_transform(docs)
+        
+        # Apply UMAP and plot results
+        mapper = UMAP(random_state=66).fit(tfidf_matrix)
+        umap.plot.points(mapper)
+        plt.savefig('Plots/UMAP terms.png', transparent = True, dpi = 300)
         plt.show()
         plt.close()
