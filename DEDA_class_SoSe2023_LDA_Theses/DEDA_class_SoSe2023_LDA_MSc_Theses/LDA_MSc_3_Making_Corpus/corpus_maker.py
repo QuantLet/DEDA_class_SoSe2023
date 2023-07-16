@@ -10,6 +10,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from yellowbrick.text import UMAPVisualizer
 from umap.umap_ import UMAP
 import umap.plot
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 class CorpusMaker:
     '''
@@ -20,12 +21,12 @@ class CorpusMaker:
     Args:
         input_folder (str): The folder containing the filtered MSc theses. (Should set to the output of the preprocessing function)
         
-    Attributes:
+    Returns:
         dictionary: A dictionary generated using Gensim.
         dictionary_token2id: A mapping of tokens to IDs.
         corpus: BoW corpus generated from the theses. 
-        texts: All tokens (used for coherence later on)
-        dates: Returns dates list for theses
+        texts: All tokens 
+        dates: A date list for theses
         
     Methods:
         make_corpus: Processes the filtered theses texts, drops rare words overall, creates corpus.
@@ -188,20 +189,20 @@ class CorpusMaker:
         Small function to generate UMAP visualization of terms distribution
         '''
         
-        docs = [" ".join(text) for text in self.texts]
+        docs = []
+                
+        for thesis_list in self.texts:
+            docs.extend(thesis_list)
 
         # Create an instance of TfidfVectorizer
         vectorizer = TfidfVectorizer()
-        
+
         # Fit and transform the corpus using TF-IDF vectorization
         tfidf_matrix = vectorizer.fit_transform(docs)
-        tfidf_matrix = tfidf_matrix.T
-        print(f'Shape of the matrix: {tfidf_matrix.shape}')
         
         # Apply UMAP and plot results
-        tfidf_embedding = UMAP(metric='hellinger', random_state = 66).fit(tfidf_matrix)
-        print(f'Shape after UMAP: {tfidf_embedding.embedding_.shape}'
-        fig = umap.plot.points(tfidf_embedding)
+        mapper = UMAP(random_state=66).fit(tfidf_matrix)
+        umap.plot.points(mapper)
         plt.savefig('UMAP terms.png', transparent = True, dpi = 300)
         plt.show()
         plt.close()
