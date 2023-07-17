@@ -1,5 +1,5 @@
 
-Name of Quantlet: data_sourcing
+Name of Quantlet: 'DEDA_SoSe23_HU_NBA_SHAP_Data_Sourcing_NBA_Games'
 
 Published in: 'DEDA Class SS23'
 
