@@ -5,12 +5,16 @@ import pickle
 from gensim import corpora
 from nltk.tokenize import word_tokenize
 import matplotlib.pyplot as plt
+import numpy as np
 from wordcloud import WordCloud
 from sklearn.feature_extraction.text import TfidfVectorizer
 from yellowbrick.text import UMAPVisualizer
 from umap.umap_ import UMAP
 import umap.plot
-from sklearn.feature_extraction.text import TfidfVectorizer
+#%matplotlib notebook
+from bokeh.plotting import show, save, output_notebook, output_file
+from bokeh.resources import INLINE
+output_notebook(resources=INLINE)
 
 class CorpusMaker:
     '''
@@ -32,7 +36,7 @@ class CorpusMaker:
         make_corpus: Processes the filtered theses texts, drops rare words overall, creates corpus.
         show_top_words: Prints the most frequent words per thesis in the corpus.
         make_wordcloud: Generates a wordcloud image from the corpus.
-        make_UMAP: applies UMAP to term frequencies for dimensionality reduction and visualizes as 2d graph.
+        make_UMAP: applies UMAP to term frequencies for dimensionality reduction and visualizes as interactive 2d graph.
     '''
     
     
@@ -189,20 +193,32 @@ class CorpusMaker:
         Small function to generate UMAP visualization of terms distribution
         '''
         
-        docs = []
-                
-        for thesis_list in self.texts:
-            docs.extend(thesis_list)
+        docs = [" ".join(text) for text in self.texts]
 
         # Create an instance of TfidfVectorizer
         vectorizer = TfidfVectorizer()
-
+        
         # Fit and transform the corpus using TF-IDF vectorization
         tfidf_matrix = vectorizer.fit_transform(docs)
-        
+
+        # Convert the TF-IDF matrix to an array for extracting feature names
+        tfidf_array = tfidf_matrix.toarray()
+        # Get the feature names (terms)
+        feature_names = vectorizer.get_feature_names_out()
+        hover_data = pd.DataFrame({'index':np.arange(len(feature_names)),
+                                   'term':feature_names})
+
+        #transpose for plotting
+        tfidf_matrix = tfidf_matrix.T
+        print(f'Shape of the matrix: {tfidf_matrix.shape}')
+
         # Apply UMAP and plot results
-        mapper = UMAP(random_state=66).fit(tfidf_matrix)
-        umap.plot.points(mapper)
-        plt.savefig('UMAP terms.png', transparent = True, dpi = 300)
-        plt.show()
-        plt.close()
+        tfidf_embedding = UMAP(metric='hellinger', random_state = 66).fit(tfidf_matrix)
+        print(f'Shape after UMAP: {tfidf_embedding.embedding_.shape}')
+        
+        fig = umap.plot.interactive(tfidf_embedding, hover_data = hover_data, point_size=1)
+        show(fig)
+
+        output_file("UMAP interactive.html")  # Set the output file path
+        save(fig)
+        
