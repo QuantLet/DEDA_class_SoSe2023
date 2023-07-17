@@ -20,3 +20,4 @@ Submitted: Sunday, 16 of July 2023 by Ben Fliegener
 
 # We made a sentimental analysis about news articles. The focus is between the sentiment analysis and the stocks Google, Pfizer, Microsoft and Apple.
 
+![Sentiments Results](./Results/Sentiments-Results.png)
