@@ -4,7 +4,7 @@ Published in: 'DEDA_class_SoSe2023'
 
 Description: 'Builds LDA and DTM models based on the corpus of LvB MSc Theses. Also performs gridsearch over the number of topics, alpha and beta parameters of Dirichlet document-topic and topic-term distributions respectively for picking the best models. Intertopic distance map and topic evolution graphs are created as a result.'
 
-Keywords: 'plots, natural language processing, wordcloud, umap, corpus, object-oriented programming'
+Keywords: 'plots, corpus, topic modeling, lda, dtm, dirichlet, object-oriented programming'
 
 Author: 'Timur Tenishev, Bachana Anasashvili, Yaman Tanilkan'
 

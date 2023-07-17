@@ -2,7 +2,7 @@ Name of Quantlet: 'LDA_MSc_1_Webscraping'
 
 Published in: 'DEDA_class_SoSe2023'
 
-Description: 'Collects Master's Theses from the LvB Chair of Statistics at HU Berlin, which are published on the HU edoc-Server.'
+Description: 'Collects Master's Theses from the LvB Professor of Statistics at HU Berlin, which are published on the HU edoc-Server.'
 
 Keywords: 'webscraping, beautiful soup, re, regex, functional programming'
 
