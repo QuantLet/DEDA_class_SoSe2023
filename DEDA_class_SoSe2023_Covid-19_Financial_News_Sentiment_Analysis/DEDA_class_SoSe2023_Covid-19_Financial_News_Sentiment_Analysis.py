@@ -156,10 +156,10 @@ Getting the data from github. For getting the data from Kaggle, please look at t
 """
 
 # Download prepared data for sentimental analysis
-!wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentimental_Analysis/Data/SA-Data/CNBC-SA.zip
-!wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentimental_Analysis/Data/SA-Data/CNN-SA.zip
-!wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentimental_Analysis/Data/SA-Data/NYT-SA.zip
-!wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentimental_Analysis/Data/SA-Data/YSP-SA.zip
+!wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentiment_Analysis/Data/SA-Data/CNBC-SA.zip
+!wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentiment_Analysis/Data/SA-Data/CNN-SA.zip
+!wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentiment_Analysis/Data/SA-Data/NYT-SA.zip
+!wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentiment_Analysis/Data/SA-Data/YSP-SA.zip
 
 # Unzip the files
 !unzip CNBC-SA.zip
@@ -690,6 +690,11 @@ axs[2].set_xticklabels(xlabel3)
 axs[2].set_xlabel('Sentiments')
 axs[2].set_ylabel('Count')
 axs[2].set_title('Sentiments Results (After Sources)')
+
+# Move legends outside the subplots
+for ax in axs:
+    ax.legend(loc='center right', bbox_to_anchor=(1.25, 0.5))
+
 
 # Adjust spacing between subplots
 plt.tight_layout()
