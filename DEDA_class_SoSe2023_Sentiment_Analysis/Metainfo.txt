@@ -1,0 +1,11 @@
+Name of QuantLet: Sentiment_Analysis
+
+Published in: DEDA Class SoSe2023
+
+Description: Summarization of news arcticle to find the affect og such sentiments on stocks.
+
+Keywords: Sentiment Analysis, Summarization Model,tokenizer, artificial delay, investment optimization
+
+Author: Ali Jaabous, Harsh Singh
+
+Submitted: Monday, 17 of July 2023 by Harsh and Ali
