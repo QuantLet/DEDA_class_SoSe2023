@@ -1,4 +1,4 @@
-Name of Quantlet: Energy Prosumer
+Name of Quantlet: DEDA_class_SoSe2023_Energy_Prosumer
 
 Published in: DEDA class SoSe2023
 
