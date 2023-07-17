@@ -1,0 +1,13 @@
+Topic N,Keywords
+0,"0.020*""time"" + 0.017*""order"" + 0.015*""data"" + 0.014*""prediction"" + 0.012*""price"" + 0.011*""model"" + 0.010*""series"" + 0.010*""level"" + 0.009*""bid"" + 0.008*""ask"""
+1,"0.013*""crypto"" + 0.012*""function"" + 0.011*""contract"" + 0.010*""currency"" + 0.010*""blockchain"" + 0.009*""value"" + 0.008*""smart"" + 0.007*""token"" + 0.007*""address"" + 0.007*""coin"""
+2,"0.014*""model"" + 0.010*""variable"" + 0.010*""data"" + 0.009*""use"" + 0.007*""value"" + 0.006*""test"" + 0.006*""one"" + 0.005*""result"" + 0.005*""function"" + 0.005*""method"""
+3,"0.012*""data"" + 0.009*""energy"" + 0.009*""function"" + 0.007*""use"" + 0.007*""inc"" + 0.006*""consumption"" + 0.006*""may"" + 0.005*""matrix"" + 0.005*""error"" + 0.005*""value"""
+4,"0.020*""portfolio"" + 0.014*""data"" + 0.010*""cluster"" + 0.010*""copula"" + 0.008*""distribution"" + 0.008*""return"" + 0.007*""risk"" + 0.007*""weight"" + 0.007*""number"" + 0.007*""variance"""
+5,"0.028*""frm"" + 0.016*""risk"" + 0.012*""private"" + 0.012*""return"" + 0.011*""equity"" + 0.010*""financial"" + 0.010*""test"" + 0.009*""market"" + 0.009*""company"" + 0.009*""candidate"""
+6,"0.024*""copula"" + 0.019*""model"" + 0.009*""dependence"" + 0.009*""covar"" + 0.008*""factor"" + 0.006*""correlation"" + 0.006*""cdo"" + 0.005*""systemic"" + 0.005*""parameter"" + 0.005*""default"""
+7,"0.014*""market"" + 0.014*""model"" + 0.011*""return"" + 0.010*""risk"" + 0.009*""time"" + 0.008*""price"" + 0.007*""estimate"" + 0.007*""index"" + 0.006*""volatility"" + 0.006*""value"""
+8,"0.029*""svi"" + 0.025*""day"" + 0.024*""week"" + 0.015*""model"" + 0.012*""minute"" + 0.012*""di"" + 0.012*""period"" + 0.012*""learn"" + 0.011*""granularity"" + 0.010*""univariate"""
+9,"0.016*""model"" + 0.014*""option"" + 0.013*""price"" + 0.013*""volatility"" + 0.009*""time"" + 0.008*""risk"" + 0.008*""jump"" + 0.008*""pricing"" + 0.007*""density"" + 0.007*""hedge"""
+10,"0.014*""model"" + 0.010*""network"" + 0.008*""use"" + 0.008*""factor"" + 0.007*""data"" + 0.006*""time"" + 0.006*""neural"" + 0.006*""return"" + 0.005*""input"" + 0.005*""training"""
+11,"0.014*""data"" + 0.013*""sentiment"" + 0.010*""model"" + 0.008*""use"" + 0.007*""base"" + 0.007*""analysis"" + 0.005*""method"" + 0.005*""article"" + 0.005*""regression"" + 0.005*""value"""
