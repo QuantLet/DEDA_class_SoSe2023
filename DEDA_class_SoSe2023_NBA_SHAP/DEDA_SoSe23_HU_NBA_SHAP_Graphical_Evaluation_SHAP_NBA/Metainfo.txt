@@ -1,5 +1,5 @@
 
-Name of Quantlet: 'SHAP_Plot'
+Name of Quantlet: 'DEDA_SoSe23_HU_NBA_SHAP_Graphical_Evaluation_SHAP_NBA'
 
 Published in: 'DEDA class SoSe2023'
 

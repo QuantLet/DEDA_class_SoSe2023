@@ -1,5 +1,5 @@
 
-Name of Quantlet: 'game_outcome_modelling'
+Name of Quantlet: 'DEDA_SoSe23_HU_NBA_SHAP_Modelling_Predict_NBA_Game_Outcome'
 
 Published in: 'DEDA class SoSe23'
 
