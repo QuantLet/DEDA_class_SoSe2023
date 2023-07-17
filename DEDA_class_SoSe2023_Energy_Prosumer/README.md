@@ -1,3 +1,9 @@
+[<img src="https://github.com/QuantLet/Styleguide-and-FAQ/blob/master/pictures/banner.png" width="888" alt="Visit QuantNet">](http://quantlet.de/)
+
+## [<img src="https://github.com/QuantLet/Styleguide-and-FAQ/blob/master/pictures/qloqo.png" alt="Visit QuantNet">](http://quantlet.de/) **Covid-19_Financial_News_Sentiment_Analysis** [<img src="https://github.com/QuantLet/Styleguide-and-FAQ/blob/master/pictures/QN2.png" width="60" alt="Visit QuantNet 2.0">](http://quantlet.de/)
+
+```yaml
+
 Name of Quantlet: DEDA_class_SoSe2023_Energy_Prosumer
 
 Published in: DEDA class SoSe2023
@@ -9,3 +15,9 @@ Keywords: Energy, Prosumer, Smart Home, Heat Pump, Energy Management, Electrific
 Author: Emircan Ince, Ali Burak Tosun, Lennart Ullner
 
 Submitted:  Sunday, 16 of July 2023 by Emircan Ince
+
+```
+
+# We made a sentimental analysis about news articles. The focus is between the sentiment analysis and the stocks Google, Pfizer, Microsoft and Apple.
+
+![Sentiments Results](./Results/Sentiments-Results.png)
