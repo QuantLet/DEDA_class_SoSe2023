@@ -108,10 +108,10 @@ pfe = pd.DataFrame(pfe)
 """If the code doesn't work for download the stocks data, use the following code:"""
 
 # # Getting data
-# !wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentimental_Analysis/Data/Stocks/AAPL_Stock_Data.zip
-# !wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentimental_Analysis/Data/Stocks/GOOG_Stock_Data.zip
-# !wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentimental_Analysis/Data/Stocks/MSFT_Stock_Data.zip
-# !wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentimental_Analysis/Data/Stocks/PFE_Stock_Data.zip
+# !wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentiment_Analysis/Data/Stocks/AAPL_Stock_Data.zip
+# !wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentiment_Analysis/Data/Stocks/GOOG_Stock_Data.zip
+# !wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentiment_Analysis/Data/Stocks/MSFT_Stock_Data.zip
+# !wget https://github.com/QuantLet/DEDA_class_SoSe2023/raw/main/DEDA_class_SoSe2023_Covid-19_Financial_News_Sentiment_Analysis/Data/Stocks/PFE_Stock_Data.zip
 
 # # Unzip the files:
 # !unzip AAPL_Stock_Data.zip
