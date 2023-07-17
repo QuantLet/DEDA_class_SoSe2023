@@ -1,0 +1,6 @@
+# Analyzing the Impact of Elon Musk's Twitter Feed on Cryptocurrency Prices
+
+#### The following project is for analyzing the impact of Elon Musk tweets on the price of the Cryptocurrency Bitcoin and Dogecoin.
+
+##### Project Description:
+###### The objective of this project is to analyze the relationship between Elon Musk's tweets and the subsequent price movements of the cryptocurrency Bitcoin. By making use of web scraping techniques, we gathered a comprehensive dataset of Elon Musk's tweets, because webscraping Twitter is not free anymore, from a dedicated Telegram channel, which tracks and archives his tweets in real-time. This dataset is merged with an existing collection of tweets spanning from 2010 to September 2022 which is available on Kaggle, providing a historical dataset for our analysis.In addition to the tweet data, we acquired historical cryptocurrency price data corresponding to the timeline of Elon Musk's tweets. This data enabled us to examine the impact of Musk's tweets on the cryptocurrency market, specifically focusing on the price fluctuations following his tweets. Our aims is to uncover any potential correlation or causation between Elon Musk's Twitter activity and the price dynamics of cryptocurrencies. The findings may offer potential implications for investors, traders, and researchers in the financial technology domain.

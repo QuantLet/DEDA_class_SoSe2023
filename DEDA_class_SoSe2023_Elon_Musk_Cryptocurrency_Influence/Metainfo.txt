@@ -1,0 +1,11 @@
+Name of QuantLet : 'DEDA_class_SoSe2023_Elon_Musk_Cryptocurrency_Influence'
+
+Published in : 'DEDA_class_SoSe2023'
+
+Description : 'This quantlet analyzes the influence of Elon Musk's tweets on cryptocurrency price movements of the cryptocurrencies Bitcoin and Dogecoin. Jump detection is used as method.'
+
+Keywords : 'BTC, Bitcoin, Dogecoin, Twitter, tweets, jumps, jump detection, cryptocurrency, cryptocurrencies, time series, Lee, Mykland'
+
+Authors : 'Margarita Tavkazakova, Maral Togtokhbaatar'
+
+Submitted : 'July 17 2023 by Margarita Tavkazakova and Maral Togtokhbaatar'
