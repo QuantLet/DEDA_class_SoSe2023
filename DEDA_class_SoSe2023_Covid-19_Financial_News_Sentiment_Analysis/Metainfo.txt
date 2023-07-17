@@ -1,6 +1,6 @@
-Name of QuantLet: Covid_19_Financial_News_Sentiment_Analysis
+Name of QuantLet: Covid-19_Financial_News_Sentiment_Analysis
 
-Published in: DEDA class SoSe2023
+Published in: DEDA Class SoSe2023
  
 Description: We made a sentimental analysis about news articles. The focus is between the sentiment analysis and the stocks Google, Pfizer, Microsoft and Apple.
 
