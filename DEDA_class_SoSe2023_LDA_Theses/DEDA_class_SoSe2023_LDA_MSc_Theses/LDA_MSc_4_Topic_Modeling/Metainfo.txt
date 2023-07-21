@@ -8,5 +8,6 @@ Keywords: 'plots, corpus, topic modeling, lda, dtm, dirichlet, object-oriented p
 
 Author: 'Timur Tenishev, Bachana Anasashvili, Yaman Tanilkan'
 
-See also:  1) LDA_MSc_4_Topic_Modeling.ipynb
-           2) LDA_with_Grid.py
+See also:
+- LDA_MSc_4_Topic_Modeling.ipynb
+- LDA_with_Grid.py
