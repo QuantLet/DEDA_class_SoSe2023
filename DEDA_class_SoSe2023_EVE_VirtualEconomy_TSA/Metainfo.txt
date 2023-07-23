@@ -1,0 +1,13 @@
+Name of Quantlet: 'Digital Assets in a Virtual Economy: Transforming Economics?'
+
+Published in: 'DEDA_class_SoSe2023'
+	
+Description: 'Extracts economic data on consumer price index and money supply from EVE Online website and analyses the relationship between growth of money supply and inflation rate in the virtual economy using time series techniques'
+
+Keywords: 'EVE Online, Video Game, Digital Assets, Virtual Economy, Rational Behavior, Inflation, Money Supply, Time Series Analysis'
+
+Authors: 'Vifill Hardarson, Sihan Sun'
+
+Submitted: Tue, 11TH July 2023 by Vifill Hardarson
+
+

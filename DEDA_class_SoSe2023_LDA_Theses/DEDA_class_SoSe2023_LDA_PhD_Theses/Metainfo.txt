@@ -2,9 +2,8 @@ Name of Quantlet: 'DEDA_class_SoSe2023_LDA_PhD_Theses'
 
 Published in: 'DEDA_class_SoSe2023'
 
-Description: 'LDA/DTM Techniques applied to LvB Chair PhD Theses'
+Description: 'Applies LDA and DTM on LvB Ph.D theses following automated pre-processing. The results are visuzalizations of topic distributions and their evolution over time.'
 
-Keywords: 'latent dirichlet allocation, dynamic topic modeling, topic modeling, webscraping, plots, natural language processing'
+Keywords: 'latent dirichlet allocation, dynamic topic modeling, topic modeling, plots, natural language processing'
 
 Author: 'Julius Freidank, Teng Teng, Raul Cristian Bag'
-

@@ -1,0 +1,11 @@
+Name of QuantLet : 'Data Scraping'
+
+Published in : 'DEDA_class_SoSe2023'
+
+Description : 'Collects Elon Musk's tweets from a Telegram channel that collects and archives his tweets published in Twitter since 2013.'
+
+Keywords : 'BTC, Bitcoin, Dogecoin, Twitter, tweets, cryptocurrency, cryptocurrencies, Telegram, webscraping, beautifulsoup'
+
+Authors : 'Margarita Tavkazakova, Maral Togtokhbaatar'
+
+Submitted : 'July 17 2023 by Margarita Tavkazakova and Maral Togtokhbaatar'

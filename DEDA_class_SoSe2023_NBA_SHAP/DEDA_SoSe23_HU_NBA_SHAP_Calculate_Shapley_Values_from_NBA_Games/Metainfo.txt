@@ -1,5 +1,5 @@
 
-Name of Quantlet: 'calculate_shapley'
+Name of Quantlet: 'DEDA_SoSe23_HU_NBA_SHAP_Calculate_Shapley_Values_from_NBA_Games'
 
 Published in: 'DEDA class SS23'
 
