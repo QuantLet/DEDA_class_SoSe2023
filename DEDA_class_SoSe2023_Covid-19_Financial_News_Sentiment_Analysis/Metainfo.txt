@@ -7,3 +7,5 @@ Description: 'We made a sentimental analysis about news articles. The focus is b
 Keywords: 'Stock, Stock Price, Sentiment Analysis, Corona, Virus, Pandemic, Kaggle, Google, Pfizer, Microsoft, Apple, Sentiment'
 
 Author: 'Ben Fliegener, Yasemin Durmaz, Leila Zafarmand'
+
+Submitted: 'Sunday, 16 of July 2023 by Ben Fliegener'
