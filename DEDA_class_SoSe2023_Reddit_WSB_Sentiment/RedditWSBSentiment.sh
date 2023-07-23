@@ -9,4 +9,4 @@ python 00-get_posts_comments.py
 
 python 01-join-all-comments.py
 python 02-sentiment-output.py
-python 03-results.py
+python RedditWSBSentiment.py
