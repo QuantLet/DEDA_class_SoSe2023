@@ -1,4 +1,4 @@
-Name of QuantLet: 'RedditWSBSentiment'
+Name of QuantLet: 'Reddit_WSB_Sentiment'
 
 Published in: 'DEDA Class SoSe2023'
 
