@@ -218,36 +218,36 @@ class CorpusMaker:
 
         # Create a list of words and corresponding vectors
         words = pd.DataFrame({"term": model.wv.index_to_key})
+        words = words.reset_index()
         vectors = model.wv.vectors
         
         umap_embedding = UMAP(random_state = 66).fit(vectors)
         print(f'Shape after UMAP: {umap_embedding.embedding_.shape}')
         
-        fig = umap.plot.interactive(umap_embedding, hover_data = words, point_size=3)
-        show(fig)
-
-        output_file("UMAP words interactive.html")  # Set the output file path
-        save(fig)
-
+        #save the UMAP for future use
+        with open(os.path.join('DICT_CORP', 'umap_terms.pkl'), 'wb') as file:
+            pickle.dump(umap_embedding, file)
+        
         f = umap.plot.points(umap_embedding)
         f.set_title('UMAP projection of {} unique words'.format(len(words)), fontsize = 24)
         plt.savefig('UMAP terms.png', transparent = True, dpi = 300)
         plt.show()
         plt.close()
         
-        plt.figure(figsize=(19.2, 14.4))
-        plt.scatter(umap_embedding.embedding_[:, 0], umap_embedding.embedding_[:, 1], alpha=0.5, s=10)
-        for i, word in enumerate(words['term']):
-            plt.annotate(word, xy=(umap_embedding.embedding_[i, 0], umap_embedding.embedding_[i, 1]), fontsize=8)
-        plt.grid(False)
-        plt.savefig('UMAP terms annotated.png', transparent = True, dpi = 300)
-        plt.show()
-        plt.close()
+        fig = umap.plot.interactive(umap_embedding, hover_data = words, point_size=3)
+        show(fig)
+
+        output_file("UMAP words interactive.html")  # Set the output file path
+        save(fig)
+        
         
     def make_theses_UMAP(self):
         '''
         Generates UMAP visualization of documents distribution
         '''
+        
+        output_notebook(resources=INLINE)
+        
         thesis_info_pd = pd.DataFrame(self.sorted_thesis_info).T
         thesis_info_pd.columns = ['Title', 'Author']
 
@@ -258,6 +258,7 @@ class CorpusMaker:
         delete_dupl
 
         thesis_info_pd = thesis_info_pd.drop_duplicates()
+        thesis_info_pd = thesis_info_pd.reset_index()
 
         docs = [" ".join(thesis) for thesis in self.texts]
         len_docs = len(docs)
@@ -269,25 +270,21 @@ class CorpusMaker:
 
         # Fit and transform the corpus using TF-IDF vectorization
         tfidf_matrix = vectorizer.fit_transform(docs)
-
+            
         # Apply UMAP and plot results
         mapper = UMAP(random_state=66).fit(tfidf_matrix)
+        
+        #save the UMAP for future use
+        with open(os.path.join('DICT_CORP', 'umap_theses.pkl'), 'wb') as file:
+            pickle.dump(mapper, file)
+        
         f = umap.plot.points(mapper)
         f.set_title('UMAP projection of {} MSc theses'.format(len_docs), fontsize = 24)
         plt.savefig('UMAP theses.png', transparent = True, dpi = 300)
         plt.show()
         plt.close()
 
-        fig = umap.plot.interactive(mapper, hover_data = thesis_info_pd, point_size=5)
-        show(fig)
+        fig2 = umap.plot.interactive(mapper, hover_data = thesis_info_pd, point_size=5)
+        show(fig2)
         output_file("UMAP theses interactive.html")  # Set the output file path
-        save(fig)
-
-        plt.figure(figsize=(19.2, 14.4))
-        plt.scatter(mapper.embedding_[:, 0], mapper.embedding_[:, 1], alpha=0.5, s=100)
-        for i, title in enumerate(thesis_info_pd['Title']):
-            plt.annotate(title, xy=(mapper.embedding_[i, 0], mapper.embedding_[i, 1]), fontsize=24)
-        plt.grid(False)
-        plt.savefig('UMAP theses annotated.png', transparent = True, dpi = 300)
-        plt.show()
-        plt.close()
+        save(fig2)
