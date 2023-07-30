@@ -33,6 +33,7 @@ class CorpusMaker:
         corpus: BoW corpus generated from the theses. 
         texts: All tokens 
         dates: A date list for theses
+        sorted_thesis_info: A chronolically ordered dictionary with topic titles and authors
         
     Methods:
         make_corpus: Processes the filtered theses texts, drops rare words overall, creates corpus.
