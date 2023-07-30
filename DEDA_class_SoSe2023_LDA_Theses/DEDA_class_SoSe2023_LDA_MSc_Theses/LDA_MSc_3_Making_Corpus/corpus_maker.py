@@ -13,7 +13,7 @@ from yellowbrick.text import UMAPVisualizer
 from umap.umap_ import UMAP
 import umap.plot
 #%matplotlib notebook
-from bokeh.plotting import show, save, output_notebook, output_file
+from bokeh.plotting import show, save, output_notebook, output_file, reset_output
 from bokeh.resources import INLINE
 output_notebook(resources=INLINE)
 
@@ -218,7 +218,6 @@ class CorpusMaker:
 
         # Create a list of words and corresponding vectors
         words = pd.DataFrame({"term": model.wv.index_to_key})
-        words = words.reset_index()
         vectors = model.wv.vectors
         
         umap_embedding = UMAP(random_state = 66).fit(vectors)
@@ -227,6 +226,9 @@ class CorpusMaker:
         #save the UMAP for future use
         with open(os.path.join('DICT_CORP', 'umap_terms.pkl'), 'wb') as file:
             pickle.dump(umap_embedding, file)
+        
+        with open(os.path.join('DICT_CORP', 'words.pkl'), 'wb') as file:
+            pickle.dump(words, file)
         
         f = umap.plot.points(umap_embedding)
         f.set_title('UMAP projection of {} unique words'.format(len(words)), fontsize = 24)
@@ -246,26 +248,22 @@ class CorpusMaker:
         Generates UMAP visualization of documents distribution
         '''
         
+        reset_output()
+        
         output_notebook(resources=INLINE)
         
         thesis_info_pd = pd.DataFrame(self.sorted_thesis_info).T
         thesis_info_pd.columns = ['Title', 'Author']
 
-        thesis_info_pd = thesis_info_pd.reset_index()[['Title', 'Author']]
-
-        delete_dupl = list(thesis_info_pd[thesis_info_pd.duplicated() == True].index)
-        delete_dupl.reverse()
-        delete_dupl
-
-        thesis_info_pd = thesis_info_pd.drop_duplicates()
-        thesis_info_pd = thesis_info_pd.reset_index()
-
         docs = [" ".join(thesis) for thesis in self.texts]
         len_docs = len(docs)
 
-        for ind in delete_dupl:
-            del docs[ind]
-
+        thesis_info_pd['docs'] = docs
+        thesis_info_pd = thesis_info_pd.drop_duplicates()
+        thesis_info_pd = thesis_info_pd.reset_index()
+        
+        docs = thesis_info_pd['docs']
+        
         vectorizer = TfidfVectorizer()
 
         # Fit and transform the corpus using TF-IDF vectorization
@@ -284,7 +282,7 @@ class CorpusMaker:
         plt.show()
         plt.close()
 
-        fig2 = umap.plot.interactive(mapper, hover_data = thesis_info_pd, point_size=5)
+        fig2 = umap.plot.interactive(mapper, hover_data = thesis_info_pd[['Title', 'Author']], point_size=5)
         show(fig2)
         output_file("UMAP theses interactive.html")  # Set the output file path
         save(fig2)
