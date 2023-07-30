@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <title>UMAP Terms by Topic</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif; /* Change font style to Arial */
+                }
+                h1 {
+                    margin-bottom: 20px;
+                }
+                .iframe-container {
+                    position: relative;
+                    overflow: hidden;
+                    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+                }
+                .iframe-container iframe {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>UMAP Terms by Topic</h1>
+            <label for="topic_slider">Select Topic:</label>
+            <input type="range" id="topic_slider" min="1" max="12" step="1" value="1">
+            <span id="current_topic">Topic 1</span> <!-- Display the current topic number here -->
+
+            <div class="iframe-container">
+                <iframe id="topic_iframe" src="UMAP%20Terms%20by%20Topic/UMAP%20words%20coloured%20topic%201.html"></iframe>
+            </div>
+
+            <script>
+                var slider = document.getElementById("topic_slider");
+                var iframe = document.getElementById("topic_iframe");
+                var currentTopic = document.getElementById("current_topic"); // Reference to the current topic element
+
+                slider.oninput = function() {
+                    var topic = this.value;
+                    currentTopic.textContent = `Topic ${topic}`; // Update the displayed topic number
+                    iframe.src = `UMAP%20Terms%20by%20Topic/UMAP%20words%20coloured%20topic%20${topic}.html`;
+                };
+            </script>
+        </body>
+        </html>
+        
