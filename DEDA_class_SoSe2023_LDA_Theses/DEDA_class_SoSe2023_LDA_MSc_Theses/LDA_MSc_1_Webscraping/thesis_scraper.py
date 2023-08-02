@@ -2,6 +2,8 @@ import os
 import requests
 from bs4 import BeautifulSoup
 import wget
+import pickle
+import re
 
 def master_theses_scraper(url, down_dir, headers):
     """
@@ -59,6 +61,8 @@ def master_theses_scraper(url, down_dir, headers):
     # Set up a new empty container for links to the master's papers
     master_links = []
     master_dates = []
+    master_titles = []
+    master_authors = []
     for link in valid_links:
         link_r = requests.get(link['href'])
         link_s = BeautifulSoup(link_r.content, 'html.parser')
@@ -67,12 +71,22 @@ def master_theses_scraper(url, down_dir, headers):
         # Define the span with class 'type'
         type_span = link_s.find('span', class_='type')
         date_span = link_s.find('span', class_="date")
-
+        title_div = link_s.find('div', class_="h3")
+        author_div = link_s.find('div', class_ = "ds-dc_contributor_author-authority")
+        
         # Look if the object includes 'Masterarbeit' as text
         if type_span and type_span.text == 'Masterarbeit':
             master_links.append(link)
             master_dates.append(date_span.text)
-
+            try:
+                master_titles.append(title_div.text)
+            except:
+                master_titles.append('')
+            try:
+                master_authors.append(author_div.text[1:-1])
+            except:
+                master_authors.append('')
+            
     print(f'\n{len(master_links)} Master\'s Theses identified.')
     print('\nA sample entry looks as follows:\n', master_links[0])
 
@@ -84,6 +98,8 @@ def master_theses_scraper(url, down_dir, headers):
     # An empty container for the download links
     dl_links = []
     dl_dates = []
+    dl_titles = []
+    dl_authors = []
 
     for link in master_links:
         # Strips the entry shown above to retain only the link to the abstract pages
@@ -105,6 +121,8 @@ def master_theses_scraper(url, down_dir, headers):
             # Concatenate with base URL
             dl_links.append(base_url + dl_link)
             dl_dates.append(master_dates[master_links.index(link)])
+            dl_titles.append(master_titles[master_links.index(link)])
+            dl_authors.append(master_authors[master_links.index(link)])
             
         else:
             print(f"\nDue to missing link, dropped entry: {link}")
@@ -116,7 +134,8 @@ def master_theses_scraper(url, down_dir, headers):
     print(f'\nWe can download {len(dl_links)} Master\'s Theses in total.')
 
     print('\nDownload in progress...')
-
+    
+    thesis_info = {}
     # Using enumerate, our filenames will be numbered
     for index, link in enumerate(dl_links, start=1):
         # {index} takes the number of the file assigned by enumerate
@@ -127,8 +146,12 @@ def master_theses_scraper(url, down_dir, headers):
         # Downloads
         try:
             wget.download(link, out=file_path)
+            thesis_info[filename] = [dl_titles[index-1], dl_authors[index-1]]
+            
         # We should not expect any errors, but just in case
         except Exception as e:
             print(f'\nFailed to download file: {filename}. Error: {str(e)}')
 
+        with open('thesis_info.pkl', 'wb') as file:
+                pickle.dump(thesis_info, file)
     print('\nDownload Complete\n')

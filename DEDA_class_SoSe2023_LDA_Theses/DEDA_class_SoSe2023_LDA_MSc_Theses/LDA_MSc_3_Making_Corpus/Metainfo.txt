@@ -2,7 +2,7 @@ Name of Quantlet: 'LDA_MSc_3_Making_Corpus'
 
 Published in: 'DEDA_class_SoSe2023'
 
-Description: 'Extracts text data from filtered TXT-stored theses, builds corpus for later topic modeling and plots wordcloud with UMAP-visualization of terms.'
+Description: 'Extracts text data from filtered TXT-stored theses, builds corpus for later topic modeling and plots wordcloud with UMAP-visualizations of terms and documents.'
 
 Keywords: 'plots, natural language processing, wordcloud, umap, corpus, object-oriented programming'
 
