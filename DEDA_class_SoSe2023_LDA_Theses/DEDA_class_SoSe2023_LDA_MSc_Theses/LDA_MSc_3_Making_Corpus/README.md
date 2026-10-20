@@ -15,7 +15,7 @@ Keywords: plots, natural language processing, wordcloud, umap, corpus, object-or
 
 Author: Timur Tenishev, Bachana Anasashvili, Yaman Tanilkan
 
-See also: 1) LDA_MSc_3_Making_Corpus.ipynb
+See also: 1) LDA_MSc_3_Making_Corpus.ipynb 2) corpus_maker.py
 
 ```
 <div align="center">
