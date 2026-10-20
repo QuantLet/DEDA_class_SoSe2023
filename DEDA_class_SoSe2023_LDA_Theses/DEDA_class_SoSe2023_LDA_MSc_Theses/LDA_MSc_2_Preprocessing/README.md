@@ -15,7 +15,7 @@ Keywords: plots, natural language processing, stopwords, nltk, re, regex, object
 
 Author: Timur Tenishev, Bachana Anasashvili, Yaman Tanilkan
 
-See also: 1) LDA_MSc_2_Preprocessing.ipynb
+See also: 1) LDA_MSc_2_Preprocessing.ipynb 2) lang_detect.py 3) text_prep.py
 
 ```
 <div align="center">
