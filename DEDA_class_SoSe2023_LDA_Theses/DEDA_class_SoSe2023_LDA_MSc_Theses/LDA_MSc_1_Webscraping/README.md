@@ -15,6 +15,6 @@ Keywords: webscraping, beautiful soup, re, regex, functional programming
 
 Author: Timur Tenishev, Bachana Anasashvili, Yaman Tanilkan
 
-See also: 1) LDA_MSc_1_Webscraping.ipynb
+See also: 1) LDA_MSc_1_Webscraping.ipynb 2) thesis_scraper.py
 
 ```
