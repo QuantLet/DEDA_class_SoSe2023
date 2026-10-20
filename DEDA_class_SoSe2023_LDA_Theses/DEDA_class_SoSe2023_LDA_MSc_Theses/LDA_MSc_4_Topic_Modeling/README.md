@@ -15,7 +15,7 @@ Keywords: plots, corpus, UMAP, topic modeling, lda, dtm, dirichlet, object-orien
 
 Author: Timur Tenishev, Bachana Anasashvili, Yaman Tanilkan
 
-See also: 1) LDA_MSc_4_Topic_Modeling.ipynb
+See also: 1) LDA_MSc_4_Topic_Modeling.ipynb 2) LDA_with_Grid.py 3) umap_colourizer.py
 
 ```
 <div align="center">
