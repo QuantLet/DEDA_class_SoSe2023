@@ -9,7 +9,7 @@ Name of QuantLet: Reddit_WSB_Sentiment
 
 Published in: DEDA Class SoSe2023
 
-Description: Cross Correlation Analysis of Sentiment from Posts and Comments in the subreddit
+Description: Cross Correlation Analysis of Sentiment from Posts and Comments in the subreddit r/wallstreetbets and GME and AMC stocks during the Gamestop short squeeze of 2021
 
 Keywords: sentiment analysis, nlp, financial, volatility, return, asset, web scrapping, social media, reddit
 
